@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tirare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'DM Sans', sans-serif;
+      }
+      canvas {
+        max-width: 100%;
+        height: auto !important;
+      }
+      .fade-in {
+        animation: fadeIn 1.2s ease-out forwards;
+        opacity: 0;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-black transition-colors duration-500">
+
+    <header class="flex justify-between items-center p-6 shadow-md">
+      <h1 class="text-3xl font-bold">Tirare</h1>
+      <button onclick="toggleDarkMode()" class="text-2xl" aria-label="Toggle dark mode">🌓</button>
+    </header>
+
+    <section class="relative min-h-[92vh] flex flex-col justify-center items-center text-center px-8 fade-in">
+      <blockquote class="text-4xl md:text-5xl font-bold max-w-4xl leading-tight">
+        “The measure of any society is how it treats its most vulnerable members.”
+      </blockquote>
+      <p class="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+        Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — designing dignity back into the street.
+      </p>
+      <button class="mt-10 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-lg transition-transform duration-300 hover:scale-105">
+        Discover the Vision
+      </button>
+      <div class="absolute bottom-4 text-gray-500 animate-bounce text-sm">Scroll ↓</div>
+    </section>
+
+<section class="px-8 py-20 bg-gray-50 dark:bg-gray-900 dark:text-white fade-in">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl font-extrabold mb-6 text-red-700 dark:text-red-400">The Problem</h2>
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="text-xl font-medium leading-relaxed text-gray-800 dark:text-gray-100">
+          <span class="block text-2xl font-bold text-black dark:text-white mb-4">
+            Over 3 million Indian laborers still rely on manually pulled carts.
+          </span>
+          They burn thousands of calories daily, endure extreme spinal strain, and often earn under 
+          <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.
+        </p>
+        <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-gray-700 dark:text-gray-300">
+          <li><strong>Average lifespan:</strong> 52 years</li>
+          <li><strong>Back injuries:</strong> Affect 78%</li>
+          <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
+        </ul>
+      </div>
+<img src="src/assets/laborer-current-cart.jpg.png" alt="Current labor cart"
+     class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
+
+    </div>
+  </div>
+</section>
+<section class="px-8 py-20 bg-red-50 dark:bg-red-950 fade-in">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <h2 class="text-4xl font-extrabold text-red-700 dark:text-red-300 mb-4">India Is Heating Up</h2>
+      <p class="text-lg text-gray-800 dark:text-gray-100 leading-relaxed">
+        With temperatures already crossing <span class="font-bold text-red-600">47°C</span> in parts of India, the country is reeling from one of the worst heatwaves in its recorded history.
+        Laborers on the street — many pulling metal carts under a punishing sun — face rising risk of heatstroke, dehydration, and collapse.
+      </p>
+      <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+        <em>“It’s not just hot. It’s inhuman.”</em> Their work, already difficult, is becoming unbearable. What does dignity mean in a world where survival itself is at risk?
+      </p>
+    </div>
+    <img src="src/assets/heatwave.jpg" alt="India heatwave conditions"
+         class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
+  </div>
+</section>
+
+
+    <section class="px-8 py-20 fade-in">
+      <section class="px-8 py-20 fade-in bg-white dark:bg-gray-950">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-8">Quantified Impact</h2>
+    
+    <!-- CO2 Emissions Graph -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold mb-4">Annual CO₂ Emissions Comparison (kg)</h3>
+      <canvas id="co2Chart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
+    </div>
+
+    <!-- Income Graph -->
+    <div>
+      <h3 class="text-2xl font-semibold mb-4">Daily Income Comparison (₹/day)</h3>
+      <canvas id="incomeChart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
+    </div>
+  </div>
+</section>
+
+<script>
+  // CO₂ Emissions Chart
+  new Chart(document.getElementById("co2Chart"), {
+    type: "bar",
+    data: {
+      labels: ["Cycle Rickshaw", "Electric Trike"],
+      datasets: [
+        {
+          label: "Low Estimate",
+          data: [1500, 650],
+          backgroundColor: "rgba(99, 102, 241, 0.7)"
+        },
+        {
+          label: "High Estimate",
+          data: [2100, 900],
+          backgroundColor: "rgba(56, 189, 248, 0.7)"
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: "kg CO₂/year" }
+        }
+      }
+    }
+  });
+
+  // Income Chart
+  new Chart(document.getElementById("incomeChart"), {
+    type: "bar",
+    data: {
+      labels: ["Cycle Rickshaw", "Electric Trike"],
+      datasets: [
+        {
+          label: "Low Estimate",
+          data: [60, 500],
+          backgroundColor: "rgba(16, 185, 129, 0.7)"
+        },
+        {
+          label: "High Estimate",
+          data: [150, 1000],
+          backgroundColor: "rgba(34, 197, 94, 0.7)"
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: "₹ per day" }
+        }
+      }
+    }
+  });
+</script>
+
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-8">Our Solution</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 class="text-2xl font-semibold mb-4">Electric Modular Carts</h3>
+            <p>
+              Designed with dignity in mind — featuring electric assist, solar top-ups, and ergonomic design. Affordable, modular, and built to retrofit existing carts.
+            </p>
+            <ul class="list-disc mt-4 ml-4 space-y-2">
+              <li>Battery-swap + solar charging</li>
+              <li>Smart meters + GPS</li>
+              <li>₹10/day rent-to-own microfinancing</li>
+            </ul>
+          </div>
+          <img src="src/assets/metanoia-cart-diagram.png.png" alt="Tirare cart design" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
+        </div>
+      </div>
+    </section>
+
+    <section class="px-8 py-20 bg-gray-100 dark:bg-gray-800 fade-in">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6">Impact Over Time</h2>
+        <canvas id="lineChart" height="400"></canvas>
+      </div>
+    </section>
+
+    <section class="px-8 py-20 fade-in">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6">Cumulative Results</h2>
+        <canvas id="barChart" height="400"></canvas>
+      </div>
+    </section>
+
+    <section class="px-8 py-20 bg-gray-50 dark:bg-gray-900 dark:text-white fade-in">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-4 text-center">Tirare & the SDGs</h2>
+        <div class="grid md:grid-cols-2 gap-12 mt-12 items-center">
+          <ul class="space-y-4">
+            <li><strong>SDG 1:</strong> End Poverty — Ownership-driven upliftment</li>
+            <li><strong>SDG 3:</strong> Health — Less physical strain, better air</li>
+            <li><strong>SDG 8:</strong> Decent Work — Green dignified employment</li>
+            <li><strong>SDG 9:</strong> Innovation — Sustainable mobility at scale</li>
+            <li><strong>SDG 11:</strong> Better Cities — Empowered informal workers</li>
+            <li><strong>SDG 13:</strong> Climate Action — Cut last-mile emissions</li>
+          </ul>
+          <img src="src/assets/sdgs.png" alt="SDGs" class="rounded-xl shadow-xl" />
+        </div>
+      </div>
+    </section>
+
+    <section class="px-8 py-20 fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-4">A Global Invitation</h2>
+        <p class="text-xl mb-6 text-gray-600 dark:text-gray-300">
+          Tirare invites UNDP, UNEP, and UN-Habitat to help us redefine labor, empower workers, and green our cities — together.
+        </p>
+        <button class="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-transform duration-300 hover:scale-105">Read the UN Prospectus</button>
+      </div>
+    </section>
+
+    <section class="px-8 py-20 bg-gray-100 dark:bg-gray-900 fade-in">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Join the Movement</h2>
+        <p class="mb-6 text-gray-500 dark:text-gray-300">
+          Are you a policymaker, investor, or global advocate? Let’s collaborate.
+        </p>
+        <form class="grid md:grid-cols-2 gap-6">
+          <input type="text" placeholder="Your Name" class="p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white" />
+          <input type="text" placeholder="Your Organization" class="p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white" />
+          <textarea placeholder="Message or Proposal" class="p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white md:col-span-2"></textarea>
+          <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-transform duration-300 hover:scale-105">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="text-center text-gray-500 text-sm py-8">
+      Tirare © 2025 | Built for dignity, backed by data.
+    </footer>
+
+    <script>
+      function toggleDarkMode() {
+        document.body.classList.toggle("dark");
+        document.body.classList.toggle("bg-white");
+        document.body.classList.toggle("text-black");
+        document.body.classList.toggle("bg-black");
+        document.body.classList.toggle("text-white");
+      }
+
+const impactData = {
+  labels: ["0", "100000", "200000", "300000", "400000", "500000"],
+  datasets: [
+    {
+      label: "Projected CO₂ Savings (kg)",
+      data: [0, 120000000, 240000000, 360000000, 480000000, 600000000],
+      borderColor: "#3b82f6",
+      backgroundColor: "rgba(59, 130, 246, 0.2)",
+      tension: 0.4,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+    },
+    {
+      label: "Projected Income Uplift (₹)",
+      data: [0, 18000000000, 36000000000, 54000000000, 72000000000, 90000000000],
+      borderColor: "#10b981",
+      backgroundColor: "rgba(16, 185, 129, 0.2)",
+      tension: 0.4,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+    },
+    {
+      label: "Projected Labor Hours Saved",
+      data: [0, 120000000, 240000000, 360000000, 480000000, 600000000],
+      borderColor: "#facc15",
+      backgroundColor: "rgba(234, 179, 8, 0.2)",
+      tension: 0.4,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+    },
+  ],
+};
+
+const summaryData = {
+  labels: ["Carts Projected", "CO₂ Saved (kg)", "Hours Freed", "Income Uplift (₹)"],
+  datasets: [
+    {
+      label: "Projected Impact Summary",
+      data: [500000, 600000000, 600000000, 90000000000],
+      backgroundColor: ["#3b82f6", "#10b981", "#facc15", "#ef4444"],
+      borderRadius: 12,
+    },
+  ],
+};
+
+new Chart(document.getElementById("lineChart"), {
+  type: "line",
+  data: impactData,
+  options: {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        backgroundColor: "#1f2937",
+        titleColor: "#fff",
+        bodyColor: "#ddd"
+      },
+      legend: {
+        position: "bottom",
+        labels: { color: "#111" },
+      },
+    },
+    scales: {
+      x: { ticks: { color: "#333" } },
+      y: { ticks: { color: "#333" } },
+    },
+  },
+});
+
+new Chart(document.getElementById("barChart"), {
+  type: "bar",
+  data: summaryData,
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: "#1f2937",
+        titleColor: "#fff",
+        bodyColor: "#ddd"
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: "#333" },
+        grid: { color: "#e5e7eb" },
+      },
+      x: {
+        ticks: { color: "#333" },
+        grid: { display: false },
+      },
+    },
+  },
+});
+
+    </script>
+    
+  </body>
+</html>
