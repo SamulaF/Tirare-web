@@ -4,7 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tirare</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          primary: '#1D4ED8',
+        },
+        fontFamily: {
+          sans: ['DM Sans', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -25,7 +41,8 @@
       }
     </style>
   </head>
-  <body class="bg-white text-black transition-colors duration-500">
+<body class="bg-white text-black dark:bg-gray-950 dark:text-white transition-all duration-500">
+
 
     <header class="flex justify-between items-center p-6 shadow-md">
       <h1 class="text-3xl font-bold">Tirare</h1>
@@ -419,6 +436,11 @@ new Chart(document.getElementById("barChart"), {
 });
 
     </script>
-    
+    <script>
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+  }
+</script>
+
   </body>
 </html>
