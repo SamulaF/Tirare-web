@@ -458,6 +458,18 @@ new Chart(document.getElementById("barChart"), {
   };
 </script>
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    // Optional: persist preference
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  }
+
+  // Auto-load saved theme on page load
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+</script>
 
   </body>
 </html>
