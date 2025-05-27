@@ -441,6 +441,22 @@ new Chart(document.getElementById("barChart"), {
     document.documentElement.classList.toggle('dark');
   }
 </script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          primary: '#1D4ED8',
+        },
+        fontFamily: {
+          sans: ['DM Sans', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
 
   </body>
 </html>
