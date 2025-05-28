@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tirare</title>
-<script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     darkMode: 'class',
@@ -449,6 +448,27 @@ new Chart(document.getElementById("barChart"), {
   if (localStorage.getItem('theme') === 'dark') {
     document.documentElement.classList.add('dark');
   }
+</script>
+<script>
+  function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    // Optional: save preference in localStorage
+    if (document.documentElement.classList.contains('dark')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  // Load saved theme preference
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  });
 </script>
 
   </body>
