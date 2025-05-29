@@ -154,11 +154,17 @@
     </div>
 
     <!-- CO2 Graph -->
-    <div>
-      <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Annual CO₂ Emissions (kg/year)</h3>
-      <canvas id="co2Chart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
-    </div>
-  </div>
+<!-- Lifecycle CO₂ Emissions -->
+<div>
+  <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+    Lifecycle CO₂ Impact (kg/year, per vehicle)
+  </h3>
+  <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+    While cycle rickshaws emit no CO₂ during operation, we consider manufacturing, material sourcing, and energy inputs across the lifecycle for a fair comparison.
+  </p>
+  <canvas id="co2Chart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
+</div>
+</div>
 </section>
 
 <!-- Our Solution Section -->
@@ -270,19 +276,63 @@
   });
 
   new Chart(document.getElementById("co2Chart"), {
-    type: "bar",
-    data: {
-      labels: ["Cycle Rickshaw", "Electric Trike"],
-      datasets: [
-        { label: "Low Estimate", data: [1500, 650], backgroundColor: "rgba(99, 102, 241, 0.7)" },
-        { label: "High Estimate", data: [2100, 900], backgroundColor: "rgba(56, 189, 248, 0.7)" }
-      ]
+  type: "bar",
+  data: {
+    labels: ["Cycle Rickshaw", "Electric Trike"],
+    datasets: [
+      {
+        label: "Lifecycle (Low Estimate)",
+        data: [150, 650],
+        backgroundColor: "rgba(99, 102, 241, 0.7)"
+      },
+      {
+        label: "Lifecycle (High Estimate)",
+        data: [210, 900],
+        backgroundColor: "rgba(56, 189, 248, 0.7)"
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "kg CO₂/year (Lifecycle)"
+        },
+        ticks: {
+          color: "#333"
+        },
+        grid: {
+          color: "#e5e7eb"
+        }
+      },
+      x: {
+        ticks: {
+          color: "#333"
+        },
+        grid: {
+          display: false
+        }
+      }
     },
-    options: {
-      responsive: true,
-      scales: { y: { beginAtZero: true, title: { display: true, text: "kg CO₂/year" } } }
+    plugins: {
+      tooltip: {
+        backgroundColor: "#1f2937",
+        titleColor: "#fff",
+        bodyColor: "#ddd"
+      },
+      legend: {
+        position: "bottom",
+        labels: {
+          color: "#333"
+        }
+      }
     }
-  });
+  }
+});
+
 </script>
 <section class="px-8 py-20 bg-gray-100 dark:bg-gray-900 fade-in">
   <div class="max-w-4xl mx-auto text-center">
