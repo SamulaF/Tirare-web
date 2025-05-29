@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tirare</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              backgroundLight: '#f9fafb',
+              backgroundDark: '#121212',
+              cardLight: '#ffffff',
+              cardDark: '#1e1e1e',
+              textLight: '#1f2937',
+              textDark: '#e5e7eb'
+            }
+          }
+        }
+      };
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -30,20 +47,20 @@
       }
     </script>
   </head>
-  <body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-500">
+  <body class="bg-backgroundLight text-textLight dark:bg-backgroundDark dark:text-textDark transition-colors duration-500">
 
     <!-- Header -->
-    <header class="flex justify-between items-center p-6 shadow-md">
+    <header class="flex justify-between items-center p-6 shadow-md bg-white dark:bg-cardDark">
       <h1 class="text-3xl font-bold">Tirare</h1>
       <button onclick="toggleDarkMode()" class="text-2xl" aria-label="Toggle dark mode">🌓</button>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[92vh] flex flex-col justify-center items-center text-center px-8 fade-in">
+    <section class="relative min-h-[92vh] flex flex-col justify-center items-center text-center px-6 md:px-12 fade-in">
       <blockquote class="text-4xl md:text-5xl font-bold max-w-4xl leading-tight">
         “The measure of any society is how it treats its most vulnerable members.”
       </blockquote>
-      <p class="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-2xl">
+      <p class="mt-6 text-xl text-gray-700 dark:text-gray-300 max-w-2xl">
         Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — designing dignity back into the street.
       </p>
       <button class="mt-10 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-lg transition-transform duration-300 hover:scale-105">
@@ -52,213 +69,179 @@
       <div class="absolute bottom-4 text-gray-500 animate-bounce text-sm">Scroll ↓</div>
     </section>
 
-    <!-- Problem Sections -->
-    <!-- ... Existing problem sections remain unchanged ... -->
-<!-- The Problem -->
-<!-- The Problem -->
-<section class="px-8 py-20 bg-white dark:bg-black fade-in">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-5xl font-extrabold mb-6 text-red-600 dark:text-red-400">The Problem</h2>
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <p class="text-xl font-medium leading-relaxed text-gray-800 dark:text-gray-100">
-          <span class="block text-2xl font-bold text-black dark:text-white mb-4">
-            Over 3 million Indian laborers still rely on manually pulled carts.
-          </span>
-          They burn thousands of calories daily, endure extreme spinal strain, and often earn under 
-          <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.
-        </p>
-        <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-gray-700 dark:text-gray-300">
-          <li><strong>Average lifespan:</strong> 52 years</li>
-          <li><strong>Back injuries:</strong> Affect 78%</li>
-          <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
-        </ul>
-      </div>
-      <img src="src/assets/laborer-current-cart.jpg.png" alt="Current labor cart"
-           class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
-    </div>
-  </div>
-</section>
-
-<!-- Smooth transition -->
-<div class="h-8 bg-gradient-to-b from-white to-rose-50 dark:from-black dark:to-rose-950"></div>
-
-<!-- India Is Heating Up -->
-<section class="px-8 py-20 bg-rose-50 dark:bg-rose-950 fade-in">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div>
-      <h2 class="text-4xl font-extrabold text-rose-700 dark:text-rose-300 mb-4">India Is Heating Up</h2>
-      <p class="text-lg text-gray-800 dark:text-gray-100 leading-relaxed">
-        With temperatures already crossing <span class="font-bold text-rose-600 dark:text-rose-400">47°C</span> in parts of India, the country is reeling from one of the worst heatwaves in its recorded history.
-        Laborers on the street — many pulling metal carts under a punishing sun — face rising risk of heatstroke, dehydration, and collapse.
-      </p>
-      <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
-        <em>“It’s not just hot. It’s inhuman.”</em> Their work, already difficult, is becoming unbearable. What does dignity mean in a world where survival itself is at risk?
-      </p>
-    </div>
-    <img src="src/assets/heatwave.jpg" alt="India heatwave conditions"
-         class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
-  </div>
-</section>
-
-<!-- Smooth transition -->
-<div class="h-8 bg-gradient-to-b from-rose-950 to-amber-950 dark:from-rose-950 dark:to-amber-950"></div>
-
-<!-- Animal Welfare -->
-<section class="px-8 py-20 bg-amber-50 dark:bg-amber-950 dark:text-white fade-in">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div class="order-1 md:order-none">
-      <img src="Animal.jpeg" alt="Collapsed horse being abused"
-           class="rounded-2xl shadow-xl w-full object-cover max-h-[500px] transition-transform duration-500 hover:scale-105" />
-    </div>
-    <div>
-      <h2 class="text-4xl font-extrabold text-amber-700 dark:text-amber-300 mb-4">
-        Animals Deserve Dignity Too
-      </h2>
-      <p class="text-lg text-gray-800 dark:text-gray-100 leading-relaxed">
-        Across many Indian cities, animals like horses, donkeys, and oxen are still used to pull overloaded carts in extreme heat — often without water, rest, or care. When they collapse from exhaustion or injury, they are not rescued… they are beaten.
-      </p>
-      <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
-        One image says it all: a horse collapsed under the sun, being slapped by its keeper. This is not tradition. It’s abuse — normalized on our streets.
-      </p>
-      <p class="mt-4 text-base font-semibold text-amber-800 dark:text-amber-300">
-        Tirare stands for <em>all</em> lives. Our transition to electric carts isn't just a human rights solution — it’s an animal welfare revolution.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-    <!-- Quantified Impact Section -->
-    <section class="px-8 py-20 fade-in bg-white dark:bg-gray-950">
+    <!-- The Problem -->
+    <section class="px-6 md:px-12 py-20 bg-cardLight dark:bg-cardDark fade-in">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold mb-8">Quantified Impact</h2>
-
-        <!-- Income Graph -->
-        <div class="mb-16">
-          <h3 class="text-2xl font-semibold mb-4">Daily Income Comparison (₹/day)</h3>
-          <canvas id="incomeChart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
-        </div>
-
-        <!-- CO2 Graph -->
-        <div>
-          <h3 class="text-2xl font-semibold mb-4">Annual CO₂ Emissions (kg/year)</h3>
-          <canvas id="co2Chart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Solution Section -->
-    <section class="px-8 py-20 fade-in bg-gray-50 dark:bg-gray-900">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold mb-8">Our Solution</h2>
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+        <h2 class="text-5xl font-extrabold mb-6 text-red-600 dark:text-red-400">The Problem</h2>
+        <div class="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h3 class="text-2xl font-semibold mb-4">Electric Cargo Trikes — Built for Real India</h3>
-            <p>
-              Tirare is not just replacing carts — we are reimagining mobility for India's hardest workers. From brand-new electric trikes to retrofitted and modified carts, our modular system is designed to restore dignity, save lives, and boost incomes.
-            </p>
-            <ul class="list-disc mt-4 ml-4 space-y-2">
-              <li>Zero down-payment rent-to-own options</li>
-              <li>Battery swap + lifetime service model</li>
-              <li>Fits both new vehicles and upgraded legacy carts</li>
-            </ul>
-
-            <div class="mt-6 space-y-6 text-sm text-gray-800 dark:text-gray-200">
-              <div>
-                <h4 class="font-bold text-lg mb-1">✅ Plan A: Pay-as-You-Go</h4>
-                <p>₹0 upfront. ~₹60/day over ~30 months. Fully includes servicing, parts, and battery swaps. Tailored for daily-wage workers with unstable income.</p>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg mb-1">✅ Plan B: NGO/SHG-Backed Microloan</h4>
-                <p>₹0 upfront. ₹1,500–₹2,000/month over 24–36 months. Payments handled through trusted local partners or self-help groups. Designed for community-rooted lending models.</p>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg mb-1">✅ Plan C: Pilot Trial (CSR/Trust-Building)</h4>
-                <p>3-month free trial. Pilots in new cities or funded through CSR. Vendors can convert to Plan A or B post-trial. Great for testing in complex areas before scale.</p>
-              </div>
-            </div>
-
-            <p class="mt-8 text-base font-semibold text-blue-700 dark:text-blue-400">
-              <strong>No vendor is turned away.</strong><br>
-              <span class="text-gray-700 dark:text-gray-300">
-                Dignity is a right — not a reward. Tirare ensures every worker, regardless of current income or cart condition, has a path forward: New build, retrofit, or modification.
+            <p class="text-xl font-medium leading-relaxed text-gray-800 dark:text-gray-100">
+              <span class="block text-2xl font-bold mb-4">
+                Over 3 million Indian laborers still rely on manually pulled carts.
               </span>
+              They burn thousands of calories daily, endure extreme spinal strain, and often earn under 
+              <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.
             </p>
+            <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-gray-700 dark:text-gray-300">
+              <li><strong>Average lifespan:</strong> 52 years</li>
+              <li><strong>Back injuries:</strong> Affect 78%</li>
+              <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
+            </ul>
           </div>
-
-          <img src="src/assets/metanoia-cart-diagram.png.png" alt="Tirare cart design" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
+          <img src="src/assets/laborer-current-cart.jpg.png" alt="Current labor cart"
+               class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
         </div>
       </div>
     </section>
 
-    <!-- Impact Over Time -->
-    <section class="px-8 py-20 bg-gray-100 dark:bg-gray-800 fade-in">
-      <div class="max-w-6xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-6">Impact Over Time</h2>
-        <canvas id="lineChart" height="400"></canvas>
+    <!-- Smooth transition -->
+    <div class="h-8 bg-gradient-to-b from-cardLight to-rose-50 dark:from-cardDark dark:to-rose-950"></div>
+
+    <!-- India Is Heating Up -->
+    <section class="px-6 md:px-12 py-20 bg-rose-50 dark:bg-rose-950 fade-in">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-extrabold text-rose-700 dark:text-rose-300 mb-4">India Is Heating Up</h2>
+          <p class="text-lg text-gray-800 dark:text-gray-100 leading-relaxed">
+            With temperatures already crossing <span class="font-bold text-rose-600 dark:text-rose-400">47°C</span> in parts of India, the country is reeling from one of the worst heatwaves in its recorded history.
+            Laborers on the street — many pulling metal carts under a punishing sun — face rising risk of heatstroke, dehydration, and collapse.
+          </p>
+          <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+            <em>“It’s not just hot. It’s inhuman.”</em> Their work, already difficult, is becoming unbearable. What does dignity mean in a world where survival itself is at risk?
+          </p>
+        </div>
+        <img src="src/assets/heatwave.jpg" alt="India heatwave conditions"
+             class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
       </div>
     </section>
 
-    <!-- Cumulative Results -->
-    <section class="px-8 py-20 fade-in">
-      <div class="max-w-6xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-6">Cumulative Results</h2>
-        <canvas id="barChart" height="400"></canvas>
-      </div>
-    </section>
+    <!-- Smooth transition -->
+    <div class="h-8 bg-gradient-to-b from-rose-950 to-amber-950 dark:from-rose-950 dark:to-amber-950"></div>
 
-    <!-- SDG Section -->
-    <section class="px-8 py-20 bg-gray-50 dark:bg-gray-900 dark:text-white fade-in">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold mb-4 text-center">Tirare & the SDGs</h2>
-        <div class="grid md:grid-cols-2 gap-12 mt-12 items-center">
-          <ul class="space-y-4">
-            <li><strong>SDG 1:</strong> End Poverty — Ownership-driven upliftment</li>
-            <li><strong>SDG 3:</strong> Health — Less physical strain, better air</li>
-            <li><strong>SDG 8:</strong> Decent Work — Green dignified employment</li>
-            <li><strong>SDG 9:</strong> Innovation — Sustainable mobility at scale</li>
-            <li><strong>SDG 11:</strong> Better Cities — Empowered informal workers</li>
-          </ul>
-          <img src="src/assets/sdgs.png" alt="SDGs" class="rounded-xl shadow-xl" />
+    <!-- Animal Welfare -->
+    <section class="px-6 md:px-12 py-20 bg-amber-50 dark:bg-amber-950 fade-in">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-1 md:order-none">
+          <img src="Animal.jpeg" alt="Collapsed horse being abused"
+               class="rounded-2xl shadow-xl w-full object-cover max-h-[500px] transition-transform duration-500 hover:scale-105" />
+        </div>
+        <div>
+          <h2 class="text-4xl font-extrabold text-amber-700 dark:text-amber-300 mb-4">
+            Animals Deserve Dignity Too
+          </h2>
+          <p class="text-lg text-gray-800 dark:text-gray-100 leading-relaxed">
+            Across many Indian cities, animals like horses, donkeys, and oxen are still used to pull overloaded carts in extreme heat — often without water, rest, or care. When they collapse from exhaustion or injury, they are not rescued… they are beaten.
+          </p>
+          <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">
+            One image says it all: a horse collapsed under the sun, being slapped by its keeper. This is not tradition. It’s abuse — normalized on our streets.
+          </p>
+          <p class="mt-4 text-base font-semibold text-amber-800 dark:text-amber-300">
+            Tirare stands for <em>all</em> lives. Our transition to electric carts isn't just a human rights solution — it’s an animal welfare revolution.
+          </p>
         </div>
       </div>
     </section>
 
-    <script>
-      new Chart(document.getElementById("incomeChart"), {
-        type: "bar",
-        data: {
-          labels: ["Cycle Rickshaw", "Electric Trike"],
-          datasets: [
-            { label: "Low Estimate", data: [60, 500], backgroundColor: "rgba(16, 185, 129, 0.7)" },
-            { label: "High Estimate", data: [150, 1000], backgroundColor: "rgba(34, 197, 94, 0.7)" }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: { y: { beginAtZero: true, title: { display: true, text: "₹ per day" } } }
-        }
-      });
+<!-- Quantified Impact Section -->
+<section class="px-8 py-20 fade-in bg-white dark:bg-gray-950">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Quantified Impact</h2>
 
-      new Chart(document.getElementById("co2Chart"), {
-        type: "bar",
-        data: {
-          labels: ["Cycle Rickshaw", "Electric Trike"],
-          datasets: [
-            { label: "Low Estimate", data: [1500, 650], backgroundColor: "rgba(99, 102, 241, 0.7)" },
-            { label: "High Estimate", data: [2100, 900], backgroundColor: "rgba(56, 189, 248, 0.7)" }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: { y: { beginAtZero: true, title: { display: true, text: "kg CO₂/year" } } }
-        }
-      });
-    </script>
-<section class="px-8 py-20 fade-in">
+    <!-- Income Graph -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Daily Income Comparison (₹/day)</h3>
+      <canvas id="incomeChart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
+    </div>
+
+    <!-- CO2 Graph -->
+    <div>
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100">Annual CO₂ Emissions (kg/year)</h3>
+      <canvas id="co2Chart" class="bg-white dark:bg-gray-900 p-4 rounded-xl shadow-md"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- Our Solution Section -->
+<section class="px-8 py-20 fade-in bg-gray-50 dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-white">Our Solution</h2>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h3 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Electric Cargo Trikes — Built for Real India</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Tirare is not just replacing carts — we are reimagining mobility for India's hardest workers. From brand-new electric trikes to retrofitted and modified carts, our modular system is designed to restore dignity, save lives, and boost incomes.
+        </p>
+        <ul class="list-disc mt-4 ml-4 space-y-2 text-gray-700 dark:text-gray-300">
+          <li>Zero down-payment rent-to-own options</li>
+          <li>Battery swap + lifetime service model</li>
+          <li>Fits both new vehicles and upgraded legacy carts</li>
+        </ul>
+
+        <div class="mt-6 space-y-6 text-sm text-gray-800 dark:text-gray-200">
+          <div>
+            <h4 class="font-bold text-lg mb-1">✅ Plan A: Pay-as-You-Go</h4>
+            <p>₹0 upfront. ~₹60/day over ~30 months. Fully includes servicing, parts, and battery swaps. Tailored for daily-wage workers with unstable income.</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-1">✅ Plan B: NGO/SHG-Backed Microloan</h4>
+            <p>₹0 upfront. ₹1,500–₹2,000/month over 24–36 months. Payments handled through trusted local partners or self-help groups. Designed for community-rooted lending models.</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-1">✅ Plan C: Pilot Trial (CSR/Trust-Building)</h4>
+            <p>3-month free trial. Pilots in new cities or funded through CSR. Vendors can convert to Plan A or B post-trial. Great for testing in complex areas before scale.</p>
+          </div>
+        </div>
+
+        <p class="mt-8 text-base font-semibold text-blue-700 dark:text-blue-400">
+          <strong>No vendor is turned away.</strong><br>
+          <span class="text-gray-700 dark:text-gray-300">
+            Dignity is a right — not a reward. Tirare ensures every worker, regardless of current income or cart condition, has a path forward: New build, retrofit, or modification.
+          </span>
+        </p>
+      </div>
+
+      <img src="src/assets/metanoia-cart-diagram.png.png" alt="Tirare cart design" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
+    </div>
+  </div>
+</section>
+
+<!-- Impact Over Time -->
+<section class="px-8 py-20 bg-gray-100 dark:bg-gray-800 fade-in">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Impact Over Time</h2>
+    <canvas id="lineChart" height="400"></canvas>
+  </div>
+</section>
+
+<!-- Cumulative Results -->
+<section class="px-8 py-20 fade-in bg-white dark:bg-gray-950">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6 text-gray-900 dark:text-white">Cumulative Results</h2>
+    <canvas id="barChart" height="400"></canvas>
+  </div>
+</section>
+
+<!-- SDG Section -->
+<section class="px-8 py-20 bg-gray-50 dark:bg-gray-900 dark:text-white fade-in">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4 text-center">Tirare & the SDGs</h2>
+    <div class="grid md:grid-cols-2 gap-12 mt-12 items-center">
+      <ul class="space-y-4 text-gray-800 dark:text-gray-200">
+        <li><strong>SDG 1:</strong> End Poverty — Ownership-driven upliftment</li>
+        <li><strong>SDG 3:</strong> Health — Less physical strain, better air</li>
+        <li><strong>SDG 8:</strong> Decent Work — Green dignified employment</li>
+        <li><strong>SDG 9:</strong> Innovation — Sustainable mobility at scale</li>
+        <li><strong>SDG 11:</strong> Better Cities — Empowered informal workers</li>
+      </ul>
+      <img src="src/assets/sdgs.png" alt="SDGs" class="rounded-xl shadow-xl" />
+    </div>
+  </div>
+</section>
+
+<!-- Global Invitation -->
+<section class="px-8 py-20 fade-in bg-gray-100 dark:bg-gray-950">
   <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-4xl font-bold mb-4">A Global Invitation</h2>
+    <h2 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white">A Global Invitation</h2>
     <p class="text-xl mb-6 text-gray-600 dark:text-gray-300">
       Tirare invites UNDP, UNEP, and UN-Habitat to help us redefine labor, empower workers, and green our cities — together.
     </p>
@@ -270,7 +253,37 @@
   </div>
 </section>
 
+<script>
+  new Chart(document.getElementById("incomeChart"), {
+    type: "bar",
+    data: {
+      labels: ["Cycle Rickshaw", "Electric Trike"],
+      datasets: [
+        { label: "Low Estimate", data: [60, 500], backgroundColor: "rgba(16, 185, 129, 0.7)" },
+        { label: "High Estimate", data: [150, 1000], backgroundColor: "rgba(34, 197, 94, 0.7)" }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: { y: { beginAtZero: true, title: { display: true, text: "₹ per day" } } }
+    }
+  });
 
+  new Chart(document.getElementById("co2Chart"), {
+    type: "bar",
+    data: {
+      labels: ["Cycle Rickshaw", "Electric Trike"],
+      datasets: [
+        { label: "Low Estimate", data: [1500, 650], backgroundColor: "rgba(99, 102, 241, 0.7)" },
+        { label: "High Estimate", data: [2100, 900], backgroundColor: "rgba(56, 189, 248, 0.7)" }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: { y: { beginAtZero: true, title: { display: true, text: "kg CO₂/year" } } }
+    }
+  });
+</script>
 <section class="px-8 py-20 bg-gray-100 dark:bg-gray-900 fade-in">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl font-bold mb-4">Join the Movement</h2>
@@ -281,27 +294,26 @@
     <form action="https://formspree.io/f/mdkookkv" method="POST" class="grid md:grid-cols-2 gap-6 text-left">
       <div class="form-group md:col-span-1">
         <label for="name" class="block mb-1 text-gray-700 dark:text-gray-200">Name:</label>
-        <input type="text" id="name" name="name" required class="w-full p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white" />
+        <input type="text" id="name" name="name" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-gray-800 dark:text-white shadow-md" />
       </div>
       <div class="form-group md:col-span-1">
         <label for="email" class="block mb-1 text-gray-700 dark:text-gray-200">Email:</label>
-        <input type="email" id="email" name="email" required class="w-full p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white" />
+        <input type="email" id="email" name="email" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-gray-800 dark:text-white shadow-md" />
       </div>
       <div class="form-group md:col-span-2">
         <label for="subject" class="block mb-1 text-gray-700 dark:text-gray-200">Subject:</label>
-        <input type="text" id="subject" name="subject" class="w-full p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white" />
+        <input type="text" id="subject" name="subject" class="w-full p-3 rounded-xl bg-white text-black dark:bg-gray-800 dark:text-white shadow-md" />
       </div>
       <div class="form-group md:col-span-2">
         <label for="message" class="block mb-1 text-gray-700 dark:text-gray-200">Message:</label>
-        <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded bg-white text-black dark:bg-gray-800 dark:text-white"></textarea>
+        <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-gray-800 dark:text-white shadow-md"></textarea>
       </div>
-      <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-transform duration-300 hover:scale-105">Send Message</button>
+      <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-transform duration-300 hover:scale-105 shadow-lg">Send Message</button>
     </form>
   </div>
 </section>
 
-
-<footer class="text-center text-gray-500 text-sm py-8">
+<footer class="text-center text-gray-500 text-sm py-8 bg-gray-50 dark:bg-black dark:text-gray-400">
   Tirare © 2025 | Built for dignity, backed by data.
 </footer>
 
@@ -376,8 +388,8 @@
         },
       },
       scales: {
-        x: { ticks: { color: "#333" } },
-        y: { ticks: { color: "#333" } },
+        x: { ticks: { color: "#333" }, grid: { color: "#e5e7eb" } },
+        y: { ticks: { color: "#333" }, grid: { color: "#e5e7eb" } },
       },
     },
   });
