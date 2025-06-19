@@ -492,6 +492,16 @@
     },
   });
 </script>
-
+    <script>
+ // Wheel rotation on scroll (desktop only)
+    window.addEventListener('scroll', function() {
+        if (window.innerWidth > 768) {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            rotation += (scrollTop > lastScrollTop ? 5 : -5); // Rotate based on scroll
+            wheel.style.transform = `rotate(${rotation}deg)`;
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+    });
+</script>
 </body>
 </html>
