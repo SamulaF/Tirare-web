@@ -69,7 +69,7 @@
     </script>
   </head>
   <body class="bg-backgroundLight text-textLight dark:bg-backgroundDark dark:text-textDark transition-colors duration-500">
-<div id="wheel"></div> <!-- Background wheel -->
+
     <!-- Header -->
     <header class="flex justify-between items-center p-6 shadow-md bg-white dark:bg-cardDark">
       <h1 class="text-3xl font-bold">Tirare</h1>
@@ -79,6 +79,7 @@
     <!-- Hero Section -->
     <section class="relative min-h-[92vh] flex flex-col justify-center items-center text-center px-6 md:px-12 fade-in">
       <blockquote class="text-4xl md:text-5xl font-bold max-w-4xl leading-tight">
+        <div id="wheel"></div> <!-- Background wheel -->
         “The measure of any society is how it treats its most vulnerable members.”
       </blockquote>
       <p class="mt-6 text-xl text-gray-700 dark:text-gray-300 max-w-2xl">
@@ -492,16 +493,23 @@
     },
   });
 </script>
-    <script>
- // Wheel rotation on scroll (desktop only)
-    window.addEventListener('scroll', function() {
-        if (window.innerWidth > 768) {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            rotation += (scrollTop > lastScrollTop ? 5 : -5); // Rotate based on scroll
-            wheel.style.transform = `rotate(${rotation}deg)`;
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }
-    });
+<script>
+// Add this inside a <script> tag, ideally at the end of the <body>
+let rotation = 0;
+let lastScrollTop = 0;
+const wheel = document.getElementById('wheel');
+
+if (wheel) {
+  window.addEventListener('scroll', function () {
+    if (window.innerWidth > 768) {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      rotation += scrollTop > lastScrollTop ? 2 : -2; // Adjust speed as needed
+      wheel.style.transform = `rotate(${rotation}deg)`;
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }
+  });
+}
+
 </script>
 </body>
 </html>
