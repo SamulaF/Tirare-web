@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tirare — Dignity Machines for Real India</title>
+    <title>Tirare – dignity by design</title>
 
-    <!-- SEO basics -->
-    <meta name="description" content="Tirare replaces exploitative cycle-carts with modular electric dignity-machines — restoring health, income and humane cities." />
-    <link rel="canonical" href="https://tirare.tech/" />
+    <!-- SEO -->
+    <meta name="description" content="Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — restoring incomes, health, and animal welfare across India." />
+    <link rel="canonical" href="https://example.com/" />
 
-    <!-- Favicons / PWA -->
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Tirare – dignity by design" />
+    <meta property="og:description" content="Electric cargo trikes and retrofit kits that uplift workers, animals, and cities." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -17,34 +25,27 @@
     <meta name="apple-mobile-web-app-title" content="Tirare" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Open Graph / Twitter -->
-    <meta property="og:title" content="Tirare — Dignity Machines for Real India" />
-    <meta property="og:description" content="Modular electric cargo trikes that uplift incomes and end street-side exploitation." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tirare.tech/" />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Performance: fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Fonts / Tailwind -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-      tailwind = tailwind || {};
+      // Tailwind config must run before Tailwind executes, so include inline too
+      tailwind = window.tailwind || {}; // safe-guard
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
-            fontFamily: { sans: ['DM Sans', 'ui-sans-serif', 'system-ui'] },
             colors: {
-              ink: {
-                light: '#111827',
-                dark: '#e5e7eb'
-              }
-            },
-            boxShadow: {
-              soft: '0 10px 30px rgba(0,0,0,.08)'
+              backgroundLight: '#f9fafb',
+              backgroundDark: '#0b0b0c',
+              cardLight: '#ffffff',
+              cardDark: '#141417',
+              textLight: '#1f2937',
+              textDark: '#e5e7eb'
             }
           }
         }
@@ -52,359 +53,425 @@
     </script>
 
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 
     <!-- Base styles -->
     <style>
-      html { scroll-behavior: smooth; }
-      body { font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; }
-      .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
-      .fade-in.is-visible { opacity: 1; transform: translateY(0); }
-      @media (prefers-reduced-motion: reduce) {
-        .fade-in { opacity: 1 !important; transform: none !important; }
-        * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+      :root {
+        --bg: #f9fafb;
+        --card: #ffffff;
+        --text: #111827;
+        --muted: #6b7280;
+        --ring: #3b82f6; /* focus */
+        --chart-1: #3b82f6; /* blue */
+        --chart-2: #10b981; /* emerald */
+        --chart-3: #f59e0b; /* amber */
+        --chart-4: #ef4444; /* red */
+        --chart-5: #6366f1; /* indigo */
       }
-      /* Spinning wheel background */
-      #wheel { position: fixed; bottom: -200px; left: -200px; width: 900px; height: 900px; z-index: 0; opacity: .35; pointer-events: none; border-radius: 50%; background-size: cover; background-image: radial-gradient(circle at 50% 50%, rgba(59,130,246,.35), rgba(16,185,129,.25) 40%, rgba(0,0,0,0) 60%); }
+      .dark {
+        --bg: #0b0b0c;
+        --card: #141417;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --ring: #60a5fa;
+      }
+      html, body { height: 100%; }
+      body { font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+      .fade-in { animation: fadeIn 700ms ease-out both; opacity: 0; }
+      @media (prefers-reduced-motion: reduce) { .fade-in { animation: none; opacity: 1; } }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(16px);} to { opacity: 1; transform: translateY(0);} }
+
+      /* Rotating wheel (lightweight CSS instead of 1MB base64) */
+      #wheel {
+        position: fixed; bottom: -220px; left: -220px; width: 900px; height: 900px;
+        background:
+          radial-gradient(closest-side, rgba(59,130,246,.14), transparent 65%),
+          conic-gradient(from 90deg, rgba(59,130,246,.12), rgba(16,185,129,.12), rgba(99,102,241,.12), rgba(234,179,8,.12), rgba(239,68,68,.12), rgba(59,130,246,.12));
+        border-radius: 50%; opacity: .5; pointer-events: none; z-index: 0; will-change: transform;
+      }
+
+      /* Focus ring */
+      :focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; border-radius: .75rem; }
+
+      /* Chart canvas constraints */
+      canvas { max-width: 100%; height: auto !important; }
     </style>
+
+    <script>
+      // Theme handling (persistent + respects OS)
+      (function() {
+        const root = document.documentElement;
+        const stored = localStorage.getItem('tirare-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if ((stored === 'dark') || (!stored && prefersDark)) root.classList.add('dark');
+        if (stored === 'light') root.classList.remove('dark');
+      })();
+    </script>
   </head>
 
-  <body class="bg-white text-ink-light dark:bg-[#0b0b0b] dark:text-ink-dark selection:bg-blue-200/60 dark:selection:bg-blue-400/30">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-black text-white dark:bg-white dark:text-black px-3 py-2 rounded-lg z-[9999]">Skip to content</a>
+  <body class="bg-[var(--bg)] text-[var(--text)] antialiased selection:bg-blue-200/40">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-white dark:bg-zinc-900 text-sm px-3 py-2 rounded-xl shadow">Skip to content</a>
+
+    <!-- Background wheel -->
+    <div id="wheel" aria-hidden="true"></div>
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-900/70 bg-white dark:bg-neutral-900 border-b border-neutral-200/60 dark:border-neutral-800">
-      <div class="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
-        <a href="#" class="font-extrabold text-xl tracking-tight">Tirare</a>
-        <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
-          <a href="#problem" class="hover:text-blue-600">Problem</a>
-          <a href="#solution" class="hover:text-blue-600">Solution</a>
-          <a href="#impact" class="hover:text-blue-600">Impact</a>
-          <a href="#sdg" class="hover:text-blue-600">SDGs</a>
-          <a href="#contact" class="hover:text-blue-600">Contact</a>
-        </nav>
-        <button id="themeToggle" class="ml-2 rounded-xl px-3 py-2 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-black shadow-soft" aria-label="Toggle dark mode">🌓</button>
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur border-b border-black/5 dark:border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3">
+          <span class="text-2xl font-bold tracking-tight">Tirare</span>
+        </a>
+        <div class="flex items-center gap-3">
+          <a href="#join" class="hidden sm:inline-block px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">Partner with us</a>
+          <button id="themeToggle" class="px-3 py-2 rounded-xl border border-black/10 dark:border-white/10" aria-label="Toggle dark mode" aria-pressed="false">🌓</button>
+        </div>
       </div>
     </header>
 
-    <main id="main" class="relative isolate">
-      <div id="wheel" aria-hidden="true"></div>
-
+    <main id="main" tabindex="-1">
       <!-- Hero -->
-      <section class="relative min-h-[88vh] grid place-items-center text-center px-6 md:px-10">
-        <div class="max-w-4xl fade-in">
-          <h1 class="text-4xl md:text-6xl font-black leading-tight">“The measure of any society is how it treats its most vulnerable.”</h1>
-          <p class="mt-6 text-lg md:text-xl text-neutral-600 dark:text-neutral-300">Tirare replaces exploitative cycle-carts with modular, electric dignity‑machines — designing dignity back into the street.</p>
-          <div class="mt-10 flex items-center justify-center gap-4">
-            <a href="#solution" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400">Discover the vision</a>
-            <a href="#impact" class="px-6 py-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 font-semibold shadow-soft">See the data</a>
+      <section id="home" class="relative min-h-[92vh] grid place-items-center text-center px-6 fade-in">
+        <div class="relative z-10 max-w-3xl mx-auto">
+          <blockquote class="text-4xl md:text-5xl font-bold leading-tight">
+            “The measure of any society is how it treats its most vulnerable members.”
+          </blockquote>
+          <p class="mt-6 text-lg md:text-xl text-zinc-700 dark:text-zinc-300">
+            Tirare replaces exploitative cycle-carts with modular, electric dignity‑machines — designing dignity back into the street.
+          </p>
+          <div class="mt-10 flex items-center justify-center gap-3">
+            <a href="#vision" class="px-6 md:px-8 py-3 md:py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-lg transition-transform duration-300 hover:scale-105">Discover the vision</a>
+            <a href="#join" class="px-6 md:px-4 py-3 md:py-3 rounded-xl border border-black/10 dark:border-white/10">Join us</a>
           </div>
-          <div class="absolute inset-x-0 bottom-6 text-neutral-500 animate-bounce text-sm">Scroll ↓</div>
+          <div class="absolute left-1/2 -translate-x-1/2 bottom-4 text-gray-500 animate-bounce text-sm" aria-hidden="true">Scroll ↓</div>
         </div>
       </section>
 
       <!-- Problem -->
-      <section id="problem" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-950/40">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <div class="fade-in">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-red-600 dark:text-red-400">The Problem</h2>
-            <p class="text-lg md:text-xl leading-relaxed"> <span class="block text-2xl font-bold mb-2">Over 3 million Indian labourers still rely on manually pulled carts.</span> They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.</p>
-            <ul class="list-disc mt-5 ml-6 space-y-2 text-neutral-700 dark:text-neutral-300">
-              <li><strong>Average lifespan:</strong> 52 years</li>
-              <li><strong>Back injuries:</strong> Affect 78%</li>
-              <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
-            </ul>
+      <section id="problem" class="px-6 md:px-12 py-20 bg-white dark:bg-zinc-950 fade-in">
+        <div class="max-w-7xl mx-auto">
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-red-600 dark:text-red-400">The Problem</h2>
+          <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <p class="text-xl font-medium leading-relaxed text-zinc-800 dark:text-zinc-100">
+                <span class="block text-2xl font-bold mb-4">Over 3 million Indian laborers still rely on manually pulled carts.</span>
+                They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.
+              </p>
+              <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-zinc-700 dark:text-zinc-300">
+                <li><strong>Average lifespan:</strong> 52 years</li>
+                <li><strong>Back injuries:</strong> Affect 78%</li>
+                <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
+              </ul>
+            </div>
+            <!-- Replace src with your optimized asset path; width/height reduce CLS -->
+            <img src="src/assets/laborer-current-cart.jpg.png" alt="A laborer pulling a heavy cart under sun" loading="lazy" width="800" height="600" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
           </div>
-          <figure class="fade-in">
-            <img src="src/assets/laborer-current-cart.jpg.png" alt="Manual cart labourer in traffic" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
-            <figcaption class="sr-only">Today’s carts trap workers in low income, unsafe conditions.</figcaption>
-          </figure>
         </div>
       </section>
 
-      <!-- India heating up -->
-      <section class="px-6 md:px-10 py-20 bg-rose-50 dark:bg-rose-900/20">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <div class="fade-in">
-            <h2 class="text-4xl font-extrabold text-rose-700 dark:text-rose-300 mb-3">India Is Heating Up</h2>
-            <p class="text-lg leading-relaxed">With temperatures crossing <span class="font-bold text-rose-700 dark:text-rose-300">47 °C</span> in parts of India, street labourers pulling metal carts face rising risk of heatstroke and collapse.</p>
-            <p class="mt-3 text-neutral-700 dark:text-neutral-300"><em>“It’s not just hot. It’s inhuman.”</em> What does dignity mean when survival itself is at risk?</p>
+      <div class="h-8 bg-gradient-to-b from-white to-rose-50 dark:from-zinc-950 dark:to-rose-950"></div>
+
+      <!-- Heat -->
+      <section class="px-6 md:px-12 py-20 bg-rose-50 dark:bg-rose-950 fade-in">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-4xl font-extrabold text-rose-700 dark:text-rose-300 mb-4">India Is Heating Up</h2>
+            <p class="text-lg text-zinc-800 dark:text-zinc-100 leading-relaxed">
+              With temperatures already crossing <span class="font-bold text-rose-600 dark:text-rose-400">47°C</span> in parts of India, the country is reeling from record heatwaves. Street laborers — many pulling metal carts under a punishing sun — face rising risk of heatstroke, dehydration, and collapse.
+            </p>
+            <p class="mt-4 text-lg text-zinc-700 dark:text-zinc-300"><em>“It’s not just hot. It’s inhuman.”</em> Their work, already difficult, is becoming unbearable. What does dignity mean in a world where survival itself is at risk?</p>
           </div>
-          <figure class="fade-in order-first md:order-none">
-            <img src="src/assets/heatwave.jpg" alt="Heatwave conditions in an Indian city" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
-          </figure>
+          <img src="src/assets/heatwave.jpg" alt="Heatwave haze over a busy Indian street" loading="lazy" width="800" height="600" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
         </div>
       </section>
 
       <!-- Animal welfare -->
-      <section class="px-6 md:px-10 py-20 bg-amber-50 dark:bg-amber-900/20">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <figure class="order-first md:order-none fade-in">
-            <img src="Animal.jpeg" alt="Collapsed horse beside an overloaded cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover max-h-[520px]" />
-          </figure>
-          <div class="fade-in">
-            <h2 class="text-4xl font-extrabold text-amber-700 dark:text-amber-300 mb-3">Animals Deserve Dignity Too</h2>
-            <p class="text-lg leading-relaxed">Across many cities, horses, donkeys and oxen are still used to pull overloaded carts in extreme heat — often without water, rest, or care. When they collapse, they’re beaten instead of rescued.</p>
-            <p class="mt-3 text-neutral-700 dark:text-neutral-300">This is not tradition. It’s abuse — normalized on our streets.</p>
-            <p class="mt-4 font-semibold text-amber-800 dark:text-amber-300">Tirare stands for <em>all</em> lives. Our electric transition is also an animal‑welfare revolution.</p>
+      <section class="px-6 md:px-12 py-20 bg-amber-50 dark:bg-amber-950 fade-in">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div class="order-1 md:order-none">
+            <img src="Animal.jpeg" alt="A collapsed horse beside a cart under harsh sun" loading="lazy" width="800" height="600" class="rounded-2xl shadow-xl w-full object-cover max-h-[500px] transition-transform duration-500 hover:scale-105" />
+          </div>
+          <div>
+            <h2 class="text-4xl font-extrabold text-amber-700 dark:text-amber-300 mb-4">Animals Deserve Dignity Too</h2>
+            <p class="text-lg text-zinc-800 dark:text-zinc-100 leading-relaxed">Across many Indian cities, animals like horses, donkeys, and oxen are still used to pull overloaded carts in extreme heat — often without water, rest, or care. When they collapse from exhaustion or injury, they are not rescued… they are beaten.</p>
+            <p class="mt-4 text-lg text-zinc-700 dark:text-zinc-300">One image says it all: a horse collapsed under the sun, being slapped by its keeper. This is not tradition. It’s abuse — normalized on our streets.</p>
+            <p class="mt-4 text-base font-semibold text-amber-800 dark:text-amber-300">Tirare stands for <em>all</em> lives. Our transition to electric carts isn't just a human rights solution — it’s an animal welfare revolution.</p>
           </div>
         </div>
       </section>
 
       <!-- Quantified impact -->
-      <section id="impact" class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
+      <section id="vision" class="px-6 md:px-8 py-20 fade-in bg-white dark:bg-zinc-950">
         <div class="max-w-7xl mx-auto">
           <h2 class="text-4xl font-bold mb-8">Quantified Impact</h2>
 
-          <div class="grid lg:grid-cols-2 gap-12">
-            <div class="fade-in">
-              <h3 class="text-2xl font-semibold mb-3">Daily Income Comparison (₹/day)</h3>
-              <canvas id="incomeChart" aria-label="Daily income comparison between cycle rickshaw and electric trike" role="img" class="bg-white dark:bg-neutral-900 p-4 rounded-xl shadow-soft"></canvas>
-            </div>
-            <div class="fade-in">
-              <h3 class="text-2xl font-semibold mb-3">Lifecycle CO₂ Impact (kg/year, per vehicle)</h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2">We include manufacturing, material sourcing and energy across each vehicle’s lifecycle for fairness.</p>
-              <canvas id="co2Chart" aria-label="Lifecycle CO2 comparison" role="img" class="bg-white dark:bg-neutral-900 p-4 rounded-xl shadow-soft"></canvas>
-            </div>
+          <div class="mb-16">
+            <h3 class="text-2xl font-semibold mb-4">Daily Income Comparison (₹/day)</h3>
+            <canvas id="incomeChart" class="bg-[var(--card)] p-4 rounded-xl shadow-md"></canvas>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold mb-2">Lifecycle CO₂ Impact (kg/year, per vehicle)</h3>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 mb-4">While cycle rickshaws emit no CO₂ during operation, we consider manufacturing, material sourcing, and energy inputs across the lifecycle for a fair comparison.</p>
+            <canvas id="co2Chart" class="bg-[var(--card)] p-4 rounded-xl shadow-md"></canvas>
           </div>
         </div>
       </section>
 
       <!-- Solution -->
-      <section id="solution" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-900/60">
+      <section class="px-6 md:px-8 py-20 fade-in bg-zinc-50 dark:bg-zinc-900">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div class="fade-in">
-            <h2 class="text-4xl font-bold mb-4">Our Solution</h2>
-            <h3 class="text-xl font-semibold mb-2">Electric Cargo Trikes — Built for Real India</h3>
-            <p class="text-neutral-700 dark:text-neutral-300">From brand‑new electric trikes to retrofitted carts, our modular system restores dignity, saves lives and boosts income.</p>
-            <ul class="list-disc mt-4 ml-5 space-y-2 text-neutral-700 dark:text-neutral-300">
-              <li>Zero down‑payment rent‑to‑own options</li>
+          <div>
+            <h2 class="text-4xl font-bold mb-6">Our Solution</h2>
+            <h3 class="text-2xl font-semibold mb-3">Electric Cargo Trikes — Built for Real India</h3>
+            <p class="text-zinc-700 dark:text-zinc-300">Tirare is not just replacing carts — we are reimagining mobility for India's hardest workers. From brand-new electric trikes to retrofitted and modified carts, our modular system is designed to restore dignity, save lives, and boost incomes.</p>
+            <ul class="list-disc mt-4 ml-4 space-y-2 text-zinc-700 dark:text-zinc-300">
+              <li>Zero down-payment rent-to-own options</li>
               <li>Battery swap + lifetime service model</li>
-              <li>Works for new builds and upgrades</li>
+              <li>Fits both new vehicles and upgraded legacy carts</li>
             </ul>
 
-            <div class="mt-6 space-y-5 text-sm">
+            <div class="mt-6 space-y-6 text-sm text-zinc-800 dark:text-zinc-200">
               <div>
-                <h4 class="font-bold text-lg">✅ Plan A: Pay‑as‑You‑Go</h4>
-                <p>₹0 upfront. ~₹60/day for ~30 months. Includes service, parts and battery swaps.</p>
+                <h4 class="font-bold text-lg mb-1">✅ Plan A: Pay-as-You-Go</h4>
+                <p>₹0 upfront. ~₹60/day over ~30 months. Includes servicing, parts, and battery swaps. Tailored for daily-wage workers with unstable income.</p>
               </div>
               <div>
-                <h4 class="font-bold text-lg">✅ Plan B: NGO/SHG‑Backed Microloan</h4>
-                <p>₹0 upfront. ₹1,500–₹2,000/month for 24–36 months via trusted local partners.</p>
+                <h4 class="font-bold text-lg mb-1">✅ Plan B: NGO/SHG-Backed Microloan</h4>
+                <p>₹0 upfront. ₹1,500–₹2,000/month over 24–36 months. Payments handled through trusted local partners or self-help groups.</p>
               </div>
               <div>
-                <h4 class="font-bold text-lg">✅ Plan C: Pilot Trial (CSR/Trust‑Building)</h4>
-                <p>3‑month free trial for new cities or CSR pilots. Convert to Plan A/B post‑trial.</p>
+                <h4 class="font-bold text-lg mb-1">✅ Plan C: Pilot Trial (CSR/Trust-Building)</h4>
+                <p>3‑month free trial. Vendors can convert to Plan A or B post‑trial. Great for testing in complex areas before scale.</p>
               </div>
             </div>
 
-            <p class="mt-6 text-blue-700 dark:text-blue-400 font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
+            <p class="mt-8 text-base font-semibold text-blue-700 dark:text-blue-400"><strong>No vendor is turned away.</strong><br><span class="text-zinc-700 dark:text-zinc-300">Dignity is a right — not a reward. Tirare ensures every worker, regardless of current income or cart condition, has a path forward: new build, retrofit, or modification.</span></p>
           </div>
-          <figure class="fade-in">
-            <img src="src/assets/metanoia-cart-diagram.png.png" alt="Exploded diagram of Tirare modular cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
-          </figure>
+          <img src="src/assets/metanoia-cart-diagram.png.png" alt="Diagram of Tirare electric trike with labeled modular parts" loading="lazy" width="900" height="650" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
         </div>
       </section>
 
       <!-- Impact over time -->
-      <section class="px-6 md:px-10 py-20 bg-neutral-100 dark:bg-neutral-800">
-        <div class="max-w-6xl mx-auto text-center">
+      <section class="px-6 md:px-8 py-20 bg-zinc-100 dark:bg-zinc-800 fade-in">
+        <div class="max-w-7xl mx-auto text-center">
           <h2 class="text-4xl font-bold mb-6">Impact Over Time</h2>
-          <canvas id="lineChart" height="380" class="rounded-xl shadow-soft bg-white dark:bg-neutral-900 p-4" aria-label="Projected impact over time" role="img"></canvas>
+          <canvas id="lineChart"></canvas>
         </div>
       </section>
 
-      <!-- Cumulative results -->
-      <section class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
-        <div class="max-w-6xl mx-auto text-center">
+      <!-- Cumulative -->
+      <section class="px-6 md:px-8 py-20 fade-in bg-white dark:bg-zinc-950">
+        <div class="max-w-7xl mx-auto text-center">
           <h2 class="text-4xl font-bold mb-6">Cumulative Results</h2>
-          <canvas id="barChart" height="380" class="rounded-xl shadow-soft bg-white dark:bg-neutral-900 p-4" aria-label="Cumulative impact summary" role="img"></canvas>
+          <canvas id="barChart"></canvas>
         </div>
       </section>
 
       <!-- SDGs -->
-      <section id="sdg" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-900">
+      <section class="px-6 md:px-8 py-20 bg-zinc-50 dark:bg-zinc-900 fade-in">
         <div class="max-w-7xl mx-auto">
-          <h2 class="text-4xl font-bold text-center">Tirare & the SDGs</h2>
-          <div class="grid md:grid-cols-2 gap-12 mt-10 items-center">
-            <ul class="space-y-3 text-neutral-800 dark:text-neutral-200">
-              <li><strong>SDG 1:</strong> End Poverty — Ownership‑driven upliftment</li>
+          <h2 class="text-4xl font-bold mb-4 text-center">Tirare & the SDGs</h2>
+          <div class="grid md:grid-cols-2 gap-12 mt-12 items-center">
+            <ul class="space-y-4 text-zinc-800 dark:text-zinc-200">
+              <li><strong>SDG 1:</strong> End Poverty — Ownership-driven upliftment</li>
               <li><strong>SDG 3:</strong> Health — Less physical strain, better air</li>
               <li><strong>SDG 8:</strong> Decent Work — Green dignified employment</li>
               <li><strong>SDG 9:</strong> Innovation — Sustainable mobility at scale</li>
               <li><strong>SDG 11:</strong> Better Cities — Empowered informal workers</li>
             </ul>
-            <figure>
-              <img src="src/assets/sdgs.png" alt="UN Sustainable Development Goals grid" loading="lazy" class="rounded-xl shadow-soft w-full" />
-            </figure>
+            <img src="src/assets/sdgs.png" alt="United Nations Sustainable Development Goals icons" loading="lazy" width="800" height="600" class="rounded-xl shadow-xl" />
           </div>
         </div>
       </section>
 
-      <!-- Invitation -->
-      <section class="px-6 md:px-10 py-20 bg-neutral-100 dark:bg-neutral-950">
+      <!-- Global invitation -->
+      <section class="px-6 md:px-8 py-20 fade-in bg-zinc-100 dark:bg-zinc-950">
         <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-4xl font-bold mb-3">A Global Invitation</h2>
-          <p class="text-lg mb-6 text-neutral-600 dark:text-neutral-300">We invite UNDP, UNEP and UN‑Habitat to help us redefine labour, empower workers and green our cities — together.</p>
+          <h2 class="text-4xl font-bold mb-4">A Global Invitation</h2>
+          <p class="text-xl mb-6 text-zinc-600 dark:text-zinc-300">Tirare invites UNDP, UNEP, and UN‑Habitat to help us redefine labor, empower workers, and green our cities — together.</p>
           <a href="UN_AI_TIRARE1.pdf" target="_blank" rel="noopener noreferrer" class="inline-block">
-            <span class="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft">Read the UN Prospectus</span>
+            <span class="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-transform duration-300 hover:scale-105">Read the UN Prospectus</span>
           </a>
         </div>
       </section>
 
-      <!-- Contact -->
-      <section id="contact" class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
-        <div class="max-w-4xl mx-auto text-center">
+      <!-- Join the movement / Contact -->
+      <section id="join" class="px-6 md:px-8 py-20 bg-zinc-100 dark:bg-zinc-900 fade-in">
+        <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">Join the Movement</h2>
-          <p class="mb-6 text-neutral-600 dark:text-neutral-300">Are you a policymaker, investor or global advocate? Let’s collaborate.</p>
+          <p class="mb-6 text-zinc-600 dark:text-zinc-300">Are you a policymaker, investor, or global advocate? Let’s collaborate.</p>
 
-          <form action="https://formspree.io/f/mdkookkv" method="POST" class="grid md:grid-cols-2 gap-6 text-left" novalidate>
-            <!-- Honeypot field -->
-            <label class="hidden" aria-hidden="true">Do not fill this out<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+          <form action="https://formspree.io/f/mdkookkv" method="POST" class="grid md:grid-cols-2 gap-6 text-left" id="contactForm" novalidate>
+            <!-- Honeypot -->
+            <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
             <div class="md:col-span-1">
               <label for="name" class="block mb-1">Name</label>
-              <input id="name" name="name" type="text" required autocomplete="name" class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700" />
+              <input type="text" id="name" name="name" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-zinc-800 dark:text-white shadow-md" />
             </div>
             <div class="md:col-span-1">
               <label for="email" class="block mb-1">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email" class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700" />
+              <input type="email" id="email" name="email" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-zinc-800 dark:text-white shadow-md" />
             </div>
             <div class="md:col-span-2">
               <label for="subject" class="block mb-1">Subject</label>
-              <input id="subject" name="subject" type="text" class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700" />
+              <input type="text" id="subject" name="subject" class="w-full p-3 rounded-xl bg-white text-black dark:bg-zinc-800 dark:text-white shadow-md" />
             </div>
             <div class="md:col-span-2">
               <label for="message" class="block mb-1">Message</label>
-              <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700"></textarea>
+              <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-zinc-800 dark:text-white shadow-md"></textarea>
             </div>
-            <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft">Send Message</button>
-            <p id="formStatus" class="md:col-span-2 text-sm text-green-600 hidden">Thanks — we’ll be in touch soon.</p>
+            <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-transform duration-300 hover:scale-105 shadow-lg" id="submitBtn">Send Message</button>
+            <p id="formStatus" class="md:col-span-2 text-sm mt-2" role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>
     </main>
 
-    <footer class="text-center text-neutral-500 text-sm py-8 bg-neutral-50 dark:bg-black dark:text-neutral-400">
-      Tirare © 2025 · Built for dignity, backed by data.
+    <footer class="text-center text-zinc-500 text-sm py-8 bg-zinc-50 dark:bg-black dark:text-zinc-400">
+      Tirare © <span id="year"></span> · Built for dignity, backed by data.
     </footer>
 
-    <!-- Scripts -->
+    <!-- App scripts -->
     <script>
-      // Theme toggle — single source of truth on <html>
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Theme toggle + charts re-theme
       const themeBtn = document.getElementById('themeToggle');
       themeBtn?.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        // Persist choice
-        const isDark = document.documentElement.classList.contains('dark');
-        try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch {}
-        // Repaint charts to match theme
-        setTimeout(() => { initCharts(true); }, 0);
+        const root = document.documentElement;
+        const isDark = root.classList.toggle('dark');
+        localStorage.setItem('tirare-theme', isDark ? 'dark' : 'light');
+        themeBtn.setAttribute('aria-pressed', String(isDark));
+        // Update chart styles when theme changes
+        reThemeCharts();
       });
-      // Load persisted theme
-      try {
-        const pref = localStorage.getItem('theme');
-        if (pref) document.documentElement.classList.toggle('dark', pref === 'dark');
-      } catch {}
 
-      // Wheel scroll parallax/rotation
-      (function initWheel(){
+      // Rotating wheel follows scroll (skips for reduced motion)
+      (function() {
         const wheel = document.getElementById('wheel');
-        let rot = 0; let lastY = window.scrollY;
+        if (!wheel) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) return;
+        let lastY = window.scrollY, rot = 0, ticking = false;
         const onScroll = () => {
-          const y = window.scrollY; const delta = y - lastY; lastY = y;
-          rot += delta * 0.15; // sensitivity
-          wheel.style.transform = `rotate(${rot}deg)`;
+          const y = window.scrollY;
+          rot += (y - lastY) * 0.08; // sensitivity
+          lastY = y;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              wheel.style.transform = `rotate(${rot}deg)`;
+              ticking = false;
+            });
+            ticking = true;
+          }
         };
         window.addEventListener('scroll', onScroll, { passive: true });
       })();
 
-      // Fade-in observer
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries) if (e.isIntersecting) e.target.classList.add('is-visible');
-      }, { threshold: .15 });
-      document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+      // Charts
+      let incomeChart, co2Chart, lineChart, barChart;
 
-      // Form feedback (client-side only convenience)
-      const form = document.querySelector('form[action^="https://formspree.io"]');
-      const status = document.getElementById('formStatus');
-      form?.addEventListener('submit', () => { status?.classList.remove('hidden'); });
-
-      // Charts with theme-aware styling
       function chartColors() {
-        const isDark = document.documentElement.classList.contains('dark');
+        const text = getComputedStyle(document.documentElement).getPropertyValue('--text').trim() || '#111827';
         return {
-          grid: isDark ? '#262626' : '#e5e7eb',
-          tick: isDark ? '#e5e7eb' : '#111827',
-          tooltipBg: isDark ? '#111827' : '#1f2937',
-          tooltipTitle: '#fff',
-          tooltipBody: '#f3f4f6'
+          grid: 'rgba(120,120,120,.2)',
+          tick: text,
+          bg: getComputedStyle(document.documentElement).getPropertyValue('--card').trim() || '#fff'
         };
       }
 
-      const impactData = {
-        labels: ['0', '100000', '200000', '300000', '400000', '500000'],
-        datasets: [
-          { label: 'Projected CO₂ Savings (kg)', data: [0, 120000000, 240000000, 360000000, 480000000, 600000000], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,.2)', tension: .4, pointRadius: 3, pointHoverRadius: 6 },
-          { label: 'Projected Income Uplift (₹)', data: [0, 18000000000, 36000000000, 54000000000, 72000000000, 90000000000], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.2)', tension: .4, pointRadius: 3, pointHoverRadius: 6 },
-          { label: 'Projected Labor Hours Saved', data: [0, 120000000, 240000000, 360000000, 480000000, 600000000], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.2)', tension: .4, pointRadius: 3, pointHoverRadius: 6 }
-        ]
-      };
-
-      const summaryData = {
-        labels: ['Carts Projected', 'CO₂ Saved (kg)', 'Hours Freed', 'Income Uplift (₹)'],
-        datasets: [{ label: 'Projected Impact Summary', data: [500000, 600000000, 600000000, 90000000000], backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'], borderRadius: 12 }]
-      };
-
-      let charts = [];
-      function initCharts(redraw = false) {
-        const { grid, tick, tooltipBg, tooltipTitle, tooltipBody } = chartColors();
-        if (redraw) { charts.forEach(c => c.destroy()); charts = []; }
-
+      function createCharts() {
+        const { tick, grid } = chartColors();
         const incomeCtx = document.getElementById('incomeChart');
         const co2Ctx = document.getElementById('co2Chart');
         const lineCtx = document.getElementById('lineChart');
         const barCtx = document.getElementById('barChart');
 
-        charts.push(new Chart(incomeCtx, {
+        incomeChart = new Chart(incomeCtx, {
           type: 'bar',
-          data: { labels: ['Cycle Rickshaw', 'Electric Trike'], datasets: [
-            { label: 'Low Estimate', data: [60, 500], backgroundColor: 'rgba(16,185,129,.8)' },
-            { label: 'High Estimate', data: [150, 1000], backgroundColor: 'rgba(34,197,94,.8)' }
-          ]},
-          options: { responsive: true, scales: { y: { beginAtZero: true, title: { display: true, text: '₹ per day' }, ticks: { color: tick }, grid: { color: grid } }, x: { ticks: { color: tick }, grid: { display: false } } }, plugins: { legend: { labels: { color: tick } }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } } }
-        }));
+          data: {
+            labels: ['Cycle Rickshaw', 'Electric Trike'],
+            datasets: [
+              { label: 'Low Estimate', data: [60, 500], backgroundColor: 'rgba(16,185,129,.75)', borderRadius: 10 },
+              { label: 'High Estimate', data: [150, 1000], backgroundColor: 'rgba(34,197,94,.75)', borderRadius: 10 }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true, title: { display: true, text: '₹ per day' }, ticks: { color: tick }, grid: { color: grid } }, x: { ticks: { color: tick }, grid: { display: false } } },
+            plugins: { legend: { labels: { color: tick } }, tooltip: { backgroundColor: '#111827', titleColor: '#fff', bodyColor: '#e5e7eb' } }
+          }
+        });
 
-        charts.push(new Chart(co2Ctx, {
+        co2Chart = new Chart(co2Ctx, {
           type: 'bar',
-          data: { labels: ['Cycle Rickshaw', 'Electric Trike'], datasets: [
-            { label: 'Lifecycle (Low)', data: [150, 650], backgroundColor: 'rgba(99,102,241,.8)' },
-            { label: 'Lifecycle (High)', data: [210, 900], backgroundColor: 'rgba(56,189,248,.8)' }
-          ]},
-          options: { responsive: true, scales: { y: { beginAtZero: true, title: { display: true, text: 'kg CO₂/year (Lifecycle)' }, ticks: { color: tick }, grid: { color: grid } }, x: { ticks: { color: tick }, grid: { display: false } } }, plugins: { legend: { position: 'bottom', labels: { color: tick } }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } } }
-        }));
+          data: {
+            labels: ['Cycle Rickshaw', 'Electric Trike'],
+            datasets: [
+              { label: 'Lifecycle (Low Estimate)', data: [150, 650], backgroundColor: 'rgba(99,102,241,.75)', borderRadius: 10 },
+              { label: 'Lifecycle (High Estimate)', data: [210, 900], backgroundColor: 'rgba(56,189,248,.75)', borderRadius: 10 }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'kg CO₂/year (Lifecycle)' }, ticks: { color: tick }, grid: { color: grid } }, x: { ticks: { color: tick }, grid: { display: false } } },
+            plugins: { legend: { position: 'bottom', labels: { color: tick } }, tooltip: { backgroundColor: '#111827', titleColor: '#fff', bodyColor: '#e5e7eb' } }
+          }
+        });
 
-        charts.push(new Chart(lineCtx, { type: 'line', data: impactData, options: { responsive: true, plugins: { legend: { labels: { color: tick } }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } }, scales: { x: { ticks: { color: tick }, grid: { color: grid } }, y: { ticks: { color: tick }, grid: { color: grid } } } } }));
+        lineChart = new Chart(lineCtx, {
+          type: 'line',
+          data: {
+            labels: ['0', '100k', '200k', '300k', '400k', '500k'],
+            datasets: [
+              { label: 'Projected CO₂ Savings (kg)', data: [0,120000000,240000000,360000000,480000000,600000000], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,.2)', tension: .4, pointRadius: 4 },
+              { label: 'Projected Income Uplift (₹)', data: [0,18000000000,36000000000,54000000000,72000000000,90000000000], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.2)', tension: .4, pointRadius: 4 },
+              { label: 'Projected Labor Hours Saved', data: [0,120000000,240000000,360000000,480000000,600000000], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.2)', tension: .4, pointRadius: 4 }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom', labels: { color: tick } }, tooltip: { backgroundColor: '#111827', titleColor: '#fff', bodyColor: '#e5e7eb' } },
+            scales: { x: { ticks: { color: tick }, grid: { color: grid } }, y: { ticks: { color: tick }, grid: { color: grid } } }
+          }
+        });
 
-        charts.push(new Chart(barCtx, { type: 'bar', data: summaryData, options: { responsive: true, plugins: { legend: { display: false }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } }, scales: { x: { ticks: { color: tick }, grid: { display: false } }, y: { beginAtZero: true, ticks: { color: tick }, grid: { color: grid } } } } }));
+        barChart = new Chart(barCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Carts Projected', 'CO₂ Saved (kg)', 'Hours Freed', 'Income Uplift (₹)'],
+            datasets: [ { label: 'Projected Impact Summary', data: [500000, 600000000, 600000000, 90000000000], backgroundColor: ['#3b82f6','#10b981','#f59e0b','#ef4444'], borderRadius: 12 } ]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111827', titleColor: '#fff', bodyColor: '#e5e7eb' } },
+            scales: { y: { beginAtZero: true, ticks: { color: tick }, grid: { color: grid } }, x: { ticks: { color: tick }, grid: { display: false } } }
+          }
+        });
       }
 
-      // init once Chart.js is ready
-      if (window.Chart) { initCharts(); } else { window.addEventListener('load', initCharts); }
-    </script>
+      function reThemeCharts() {
+        // Destroy and recreate for accurate theming
+        [incomeChart, co2Chart, lineChart, barChart].forEach(c => c && c.destroy());
+        createCharts();
+      }
 
-    <!-- Schema.org Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Tirare",
-      "url": "https://tirare.tech/",
-      "logo": "https://tirare.tech/favicon-96x96.png",
-      "sameAs": [
-        "https://www.linkedin.com/company/tirare"
-      ]
-    }
+      // Create charts after Chart.js has loaded
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.Chart) createCharts();
+      });
+
+      // Basic form UX: disabled button + status line
+      const form = document.getElementById('contactForm');
+      form?.addEventListener('submit', () => {
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('formStatus');
+        btn.disabled = true; btn.textContent = 'Sending…';
+        setTimeout(() => { status.textContent = 'Thanks! If needed, we\'ll reply within 2–3 business days.'; btn.disabled = false; btn.textContent = 'Send Message'; }, 2500);
+      });
     </script>
   </body>
 </html>
