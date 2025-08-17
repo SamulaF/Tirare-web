@@ -28,7 +28,7 @@
     <!-- Fonts / Tailwind -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
       tailwind = tailwind || {};
@@ -36,15 +36,15 @@
         darkMode: 'class',
         theme: {
           extend: {
-            fontFamily: { sans: ['DM Sans', 'ui-sans-serif', 'system-ui'], display: ['Bebas Neue', 'DM Sans', 'ui-sans-serif'] },
+            fontFamily: { sans: ['DM Sans', 'ui-sans-serif', 'system-ui'] },
             colors: {
-              ink: { light: '#111827', dark: '#e5e7eb' },
-              brand: { blue: '#2563eb', green: '#10b981', red: '#ef4444', gold: '#f59e0b' }
+              ink: {
+                light: '#111827',
+                dark: '#e5e7eb'
+              }
             },
-            boxShadow: { soft: '0 10px 30px rgba(0,0,0,.08)', glow: '0 0 0 6px rgba(37,99,235,.15)' },
-            backgroundImage: {
-              noise: "repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0px, rgba(0,0,0,.02) 1px, transparent 1px, transparent 2px), repeating-linear-gradient(90deg, rgba(0,0,0,.02) 0px, rgba(0,0,0,.02) 1px, transparent 1px, transparent 2px)",
-              halftone: 'radial-gradient(circle at 20% 10%, rgba(37,99,235,.08), transparent 35%), radial-gradient(circle at 80% 30%, rgba(16,185,129,.08), transparent 35%), radial-gradient(circle at 50% 90%, rgba(245,158,11,.08), transparent 35%)'
+            boxShadow: {
+              soft: '0 10px 30px rgba(0,0,0,.08)'
             }
           }
         }
@@ -54,43 +54,34 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
-    <!-- Base styles & motion -->
+    <!-- Base styles -->
     <style>
       html { scroll-behavior: smooth; }
       body { font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; }
-      .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.65,.25,1), transform .9s cubic-bezier(.2,.65,.25,1); }
+      .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
       .fade-in.is-visible { opacity: 1; transform: translateY(0); }
-      .pulse-hover { transition: transform .15s ease, box-shadow .2s ease; }
-      .pulse-hover:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,.12); }
-      .grain { position: relative; }
-      .grain:before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .08; mix-blend-mode: multiply; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".6"/></svg>'); }
-      .parallax { will-change: transform; transform: translateY(var(--py,0px)); transition: transform .1s linear; }
-      .word-divider { letter-spacing: .06em; text-transform: uppercase; font-weight: 800; opacity: .2; }
-      .stroke-title { -webkit-text-stroke: 1px rgba(255,255,255,.35); text-shadow: 0 2px 24px rgba(0,0,0,.25); }
-      .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg,#2563eb,#10b981,#f59e0b); z-index: 60; box-shadow: 0 0 12px rgba(37,99,235,.5); }
       @media (prefers-reduced-motion: reduce) {
         .fade-in { opacity: 1 !important; transform: none !important; }
         * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
       }
-      /* Hero wheel */
-      #wheel { position: fixed; bottom: -220px; left: -220px; width: 980px; height: 980px; z-index: 0; opacity: .28; pointer-events: none; border-radius: 50%; background-size: cover; background-image: radial-gradient(circle at 50% 50%, rgba(37,99,235,.33), rgba(16,185,129,.22) 40%, rgba(0,0,0,0) 60%); }
+      /* Spinning wheel background */
+      #wheel { position: fixed; bottom: -200px; left: -200px; width: 900px; height: 900px; z-index: 0; opacity: .35; pointer-events: none; border-radius: 50%; background-size: cover; background-image: radial-gradient(circle at 50% 50%, rgba(59,130,246,.35), rgba(16,185,129,.25) 40%, rgba(0,0,0,0) 60%); }
     </style>
   </head>
 
-  <body class="bg-white text-ink-light dark:bg-[#0b0b0b] dark:text-ink-dark selection:bg-blue-200/60 dark:selection:bg-blue-400/30 grain">
-    <div class="progress" id="progress" aria-hidden="true"></div>
+  <body class="bg-white text-ink-light dark:bg-[#0b0b0b] dark:text-ink-dark selection:bg-blue-200/60 dark:selection:bg-blue-400/30">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-black text-white dark:bg-white dark:text-black px-3 py-2 rounded-lg z-[9999]">Skip to content</a>
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-900/70 bg-white/90 dark:bg-neutral-900/90 border-b border-neutral-200/60 dark:border-neutral-800">
+    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-900/70 bg-white dark:bg-neutral-900 border-b border-neutral-200/60 dark:border-neutral-800">
       <div class="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
         <a href="#" class="font-extrabold text-xl tracking-tight">Tirare</a>
         <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
-          <a href="#problem" class="hover:text-brand-blue">Problem</a>
-          <a href="#solution" class="hover:text-brand-blue">Solution</a>
-          <a href="#impact" class="hover:text-brand-blue">Impact</a>
-          <a href="#sdg" class="hover:text-brand-blue">SDGs</a>
-          <a href="#contact" class="hover:text-brand-blue">Contact</a>
+          <a href="#problem" class="hover:text-blue-600">Problem</a>
+          <a href="#solution" class="hover:text-blue-600">Solution</a>
+          <a href="#impact" class="hover:text-blue-600">Impact</a>
+          <a href="#sdg" class="hover:text-blue-600">SDGs</a>
+          <a href="#contact" class="hover:text-blue-600">Contact</a>
         </nav>
         <button id="themeToggle" class="ml-2 rounded-xl px-3 py-2 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-black shadow-soft" aria-label="Toggle dark mode">🌓</button>
       </div>
@@ -100,61 +91,32 @@
       <div id="wheel" aria-hidden="true"></div>
 
       <!-- Hero -->
-      <section class="relative min-h-[92vh] grid place-items-center text-center px-6 md:px-10 bg-halftone">
-        <div class="absolute inset-0 bg-noise pointer-events-none opacity-[.05]"></div>
-        <div class="max-w-5xl fade-in">
-          <p class="font-semibold tracking-widest text-sm md:text-base text-neutral-500 dark:text-neutral-400">Built in India · For Dignity · For the Planet</p>
-          <h1 class="mt-3 font-display text-6xl md:text-8xl leading-[.95] tracking-tight">
-            <span class="block">Machines for</span>
-            <span class="inline-block bg-gradient-to-r from-brand-blue via-brand-green to-brand-gold bg-clip-text text-transparent">Dignity</span>
-          </h1>
-          <p class="mt-6 text-lg md:text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">Tirare replaces exploitative cycle‑carts with modular, electric dignity‑machines — designing dignity back into the street. Energy. Rebellion. Hope.</p>
+      <section class="relative min-h-[88vh] grid place-items-center text-center px-6 md:px-10">
+        <div class="max-w-4xl fade-in">
+          <h1 class="text-4xl md:text-6xl font-black leading-tight">“The measure of any society is how it treats its most vulnerable.”</h1>
+          <p class="mt-6 text-lg md:text-xl text-neutral-600 dark:text-neutral-300">Tirare replaces exploitative cycle-carts with modular, electric dignity‑machines — designing dignity back into the street.</p>
           <div class="mt-10 flex items-center justify-center gap-4">
-            <a href="#solution" class="px-7 py-3 rounded-2xl bg-brand-blue hover:bg-blue-700 text-white font-semibold shadow-soft pulse-hover focus:outline-none focus-visible:shadow-glow">Discover the vision</a>
-            <a href="#impact" class="px-7 py-3 rounded-2xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 font-semibold shadow-soft pulse-hover">See the data</a>
+            <a href="#solution" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400">Discover the vision</a>
+            <a href="#impact" class="px-6 py-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 font-semibold shadow-soft">See the data</a>
           </div>
           <div class="absolute inset-x-0 bottom-6 text-neutral-500 animate-bounce text-sm">Scroll ↓</div>
         </div>
-
-        <!-- Hero corner manifesto sticker -->
-        <div class="hidden md:block absolute right-6 top-24 rotate-[-6deg]">
-          <div class="bg-white/90 dark:bg-neutral-900/90 border-2 border-black/10 dark:border-white/10 rounded-2xl px-4 py-3 shadow-soft">
-            <p class="text-xs tracking-wide">“This is how we change the world.”</p>
-          </div>
-        </div>
       </section>
 
-      <!-- Divider word -->
-      <div class="text-center py-6">
-        <span class="word-divider text-4xl">— Problem —</span>
-      </div>
-
       <!-- Problem -->
-      <section id="problem" class="relative px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-950/40">
-        <div class="absolute inset-0 pointer-events-none [mask-image:linear-gradient(to_bottom,black,transparent)] opacity-50">
-          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dot" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="currentColor"/></pattern></defs><rect width="100%" height="100%" fill="currentColor" class="text-neutral-200 dark:text-neutral-800"/><rect width="100%" height="100%" fill="url(#dot)" class="text-neutral-300/60 dark:text-neutral-700/40"/></svg>
-        </div>
-        <div class="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <section id="problem" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-950/40">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <div class="fade-in">
             <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-red-600 dark:text-red-400">The Problem</h2>
-            <p class="text-lg md:text-xl leading-relaxed"><span class="block text-2xl font-bold mb-2">Over <span class="tabular-nums">3,000,000</span> Indian labourers still rely on manually pulled carts.</span> They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.</p>
-            <div class="mt-6 grid grid-cols-3 gap-4">
-              <div class="p-4 rounded-xl bg-white dark:bg-neutral-900 shadow-soft text-center">
-                <div class="text-2xl font-bold tabular-nums" data-counter="52">0</div>
-                <p class="text-xs mt-1">Avg. lifespan</p>
-              </div>
-              <div class="p-4 rounded-xl bg-white dark:bg-neutral-900 shadow-soft text-center">
-                <div class="text-2xl font-bold tabular-nums" data-counter="78">0</div>
-                <p class="text-xs mt-1">Back injuries (%)</p>
-              </div>
-              <div class="p-4 rounded-xl bg-white dark:bg-neutral-900 shadow-soft text-center">
-                <div class="text-2xl font-bold tabular-nums" data-counter="4">0</div>
-                <p class="text-xs mt-1">× WHO exposure</p>
-              </div>
-            </div>
+            <p class="text-lg md:text-xl leading-relaxed"> <span class="block text-2xl font-bold mb-2">Over 3 million Indian labourers still rely on manually pulled carts.</span> They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.</p>
+            <ul class="list-disc mt-5 ml-6 space-y-2 text-neutral-700 dark:text-neutral-300">
+              <li><strong>Average lifespan:</strong> 52 years</li>
+              <li><strong>Back injuries:</strong> Affect 78%</li>
+              <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
+            </ul>
           </div>
           <figure class="fade-in">
-            <img src="src/assets/laborer-current-cart.jpg.png" alt="Manual cart labourer in traffic" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover parallax" data-speed="-0.1" />
+            <img src="src/assets/laborer-current-cart.jpg.png" alt="Manual cart labourer in traffic" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
             <figcaption class="sr-only">Today’s carts trap workers in low income, unsafe conditions.</figcaption>
           </figure>
         </div>
@@ -169,7 +131,7 @@
             <p class="mt-3 text-neutral-700 dark:text-neutral-300"><em>“It’s not just hot. It’s inhuman.”</em> What does dignity mean when survival itself is at risk?</p>
           </div>
           <figure class="fade-in order-first md:order-none">
-            <img src="src/assets/heatwave.jpg" alt="Heatwave conditions in an Indian city" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover parallax" data-speed="0.08" />
+            <img src="src/assets/heatwave.jpg" alt="Heatwave conditions in an Indian city" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
           </figure>
         </div>
       </section>
@@ -178,7 +140,7 @@
       <section class="px-6 md:px-10 py-20 bg-amber-50 dark:bg-amber-900/20">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <figure class="order-first md:order-none fade-in">
-            <img src="Animal.jpeg" alt="Collapsed horse beside an overloaded cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover max-h-[520px] parallax" data-speed="-0.06" />
+            <img src="Animal.jpeg" alt="Collapsed horse beside an overloaded cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover max-h-[520px]" />
           </figure>
           <div class="fade-in">
             <h2 class="text-4xl font-extrabold text-amber-700 dark:text-amber-300 mb-3">Animals Deserve Dignity Too</h2>
@@ -188,11 +150,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Divider word -->
-      <div class="text-center py-6">
-        <span class="word-divider text-4xl">— Impact —</span>
-      </div>
 
       <!-- Quantified impact -->
       <section id="impact" class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
@@ -241,10 +198,10 @@
               </div>
             </div>
 
-            <p class="mt-6 text-brand-blue dark:text-brand-blue font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
+            <p class="mt-6 text-blue-700 dark:text-blue-400 font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
           </div>
           <figure class="fade-in">
-            <img src="src/assets/metanoia-cart-diagram.png.png" alt="Exploded diagram of Tirare modular cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover parallax" data-speed="0.06" />
+            <img src="src/assets/metanoia-cart-diagram.png.png" alt="Exploded diagram of Tirare modular cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
           </figure>
         </div>
       </section>
@@ -278,7 +235,7 @@
               <li><strong>SDG 11:</strong> Better Cities — Empowered informal workers</li>
             </ul>
             <figure>
-              <img src="src/assets/sdgs.png" alt="UN Sustainable Development Goals grid" loading="lazy" class="rounded-xl shadow-soft w-full parallax" data-speed="0.05" />
+              <img src="src/assets/sdgs.png" alt="UN Sustainable Development Goals grid" loading="lazy" class="rounded-xl shadow-soft w-full" />
             </figure>
           </div>
         </div>
@@ -290,7 +247,7 @@
           <h2 class="text-4xl font-bold mb-3">A Global Invitation</h2>
           <p class="text-lg mb-6 text-neutral-600 dark:text-neutral-300">We invite UNDP, UNEP and UN‑Habitat to help us redefine labour, empower workers and green our cities — together.</p>
           <a href="UN_AI_TIRARE1.pdf" target="_blank" rel="noopener noreferrer" class="inline-block">
-            <span class="text-lg px-6 py-3 bg-brand-blue hover:bg-blue-700 text-white rounded-2xl shadow-soft pulse-hover">Read the UN Prospectus</span>
+            <span class="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft">Read the UN Prospectus</span>
           </a>
         </div>
       </section>
@@ -321,7 +278,7 @@
               <label for="message" class="block mb-1">Message</label>
               <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700"></textarea>
             </div>
-            <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-brand-blue hover:bg-blue-700 text-white rounded-2xl shadow-soft pulse-hover">Send Message</button>
+            <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft">Send Message</button>
             <p id="formStatus" class="md:col-span-2 text-sm text-green-600 hidden">Thanks — we’ll be in touch soon.</p>
           </form>
         </div>
@@ -350,18 +307,7 @@
         if (pref) document.documentElement.classList.toggle('dark', pref === 'dark');
       } catch {}
 
-      // Scroll progress bar
-      const progress = document.getElementById('progress');
-      const setProgress = () => {
-        const h = document.documentElement;
-        const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight);
-        progress.style.width = (scrolled * 100).toFixed(2) + '%';
-      };
-      document.addEventListener('scroll', setProgress, { passive: true });
-      window.addEventListener('resize', setProgress);
-      setProgress();
-
-      // Hero wheel parallax/rotation
+      // Wheel scroll parallax/rotation
       (function initWheel(){
         const wheel = document.getElementById('wheel');
         let rot = 0; let lastY = window.scrollY;
@@ -373,51 +319,11 @@
         window.addEventListener('scroll', onScroll, { passive: true });
       })();
 
-      // Simple parallax for elements with data-speed
-      (function initParallax(){
-        const els = Array.from(document.querySelectorAll('.parallax'));
-        const update = () => {
-          const y = window.scrollY;
-          for (const el of els) {
-            const sp = parseFloat(el.dataset.speed || '0');
-            el.style.setProperty('--py', `${y * sp}px`);
-          }
-        };
-        update();
-        window.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
-      })();
-
-      // Fade-in observer (staggered)
+      // Fade-in observer
       const io = new IntersectionObserver((entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            const el = e.target; el.classList.add('is-visible');
-            io.unobserve(el);
-          }
-        }
+        for (const e of entries) if (e.isIntersecting) e.target.classList.add('is-visible');
       }, { threshold: .15 });
-      document.querySelectorAll('.fade-in').forEach((el, i) => {
-        setTimeout(() => io.observe(el), i * 60);
-      });
-
-      // Stat counters
-      const counters = document.querySelectorAll('[data-counter]');
-      const co = new IntersectionObserver((entries) => {
-        for (const e of entries) if (e.isIntersecting) {
-          const el = e.target; const target = +el.getAttribute('data-counter');
-          const start = performance.now(); const dur = 1200;
-          const step = (t) => {
-            const p = Math.min(1, (t - start) / dur);
-            const val = Math.floor(target * (1 - Math.pow(1 - p, 3))); // ease-out
-            el.textContent = val.toLocaleString();
-            if (p < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-          co.unobserve(el);
-        }
-      }, { threshold: 0.6 });
-      counters.forEach(el => co.observe(el));
+      document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
       // Form feedback (client-side only convenience)
       const form = document.querySelector('form[action^="https://formspree.io"]');
@@ -485,17 +391,20 @@
 
       // init once Chart.js is ready
       if (window.Chart) { initCharts(); } else { window.addEventListener('load', initCharts); }
+    </script>
 
-      // Schema.org Organization (kept for SEO) — injected at end in case of blockers
-      const ld = {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Tirare",
-        "url": "https://tirare.tech/",
-        "logo": "https://tirare.tech/favicon-96x96.png",
-        "sameAs": ["https://www.linkedin.com/company/tirare"]
-      };
-      const s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(ld); document.body.appendChild(s);
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tirare",
+      "url": "https://tirare.tech/",
+      "logo": "https://tirare.tech/favicon-96x96.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/tirare"
+      ]
+    }
     </script>
   </body>
 </html>
