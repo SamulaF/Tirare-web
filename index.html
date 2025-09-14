@@ -6,35 +6,25 @@
     <title>Tirare — Dignity Machines for Real India</title>
 
     <meta name="description" content="Tirare replaces exploitative cycle-carts with modular electric dignity-machines — restoring health, income and humane cities." />
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#2563eb" />
-
     <link rel="canonical" href="https://tirare.tech/" />
+
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Tirare" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/favicon.svg" color="#2563eb">
 
-    <!-- Open Graph / Twitter -->
     <meta property="og:title" content="Tirare — Dignity Machines for Real India" />
     <meta property="og:description" content="Modular electric cargo trikes that uplift incomes and end street-side exploitation." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tirare.tech/" />
     <meta property="og:image" content="/og-image.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tirare — Dignity Machines for Real India" />
-    <meta name="twitter:description" content="Modular electric cargo trikes that uplift incomes and end street-side exploitation." />
-    <meta name="twitter:image" content="/og-image.jpg" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Anton&display=swap" rel="stylesheet" />
-
-    <!-- Tailwind + Chart.js -->
     <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
       window.tailwind = window.tailwind || {};
@@ -68,10 +58,26 @@
         }
       };
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
-    <!-- Your external stylesheet -->
-    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      html{scroll-behavior:smooth}
+      body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji'}
+      .fade-in{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+      .fade-in.is-visible{opacity:1;transform:translateY(0)}
+      .hover-rise{transition:transform .35s ease, box-shadow .35s ease}
+      .hover-rise:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+      .pulse-once{animation:pulse-once 1.6s ease 1}
+      @keyframes pulse-once{0%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}70%{box-shadow:0 0 0 22px rgba(37,99,235,0)}100%{box-shadow:none}}
+      .grain:before{content:"";position:fixed;inset:-50%;pointer-events:none;opacity:.06;z-index:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".5"/></svg>');mix-blend-mode:multiply}
+      @media (prefers-reduced-motion: reduce){.fade-in{opacity:1!important;transform:none!important}*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+      .u-kinetic{position:relative}
+      .u-kinetic:after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:3px;background:linear-gradient(90deg,#2563eb,#10b981);transition:width .35s ease}
+      .u-kinetic:hover:after{width:100%}
+      #wheel{position:fixed;bottom:-200px;left:-200px;width:1000px;height:1000px;z-index:0;opacity:.25;pointer-events:none;border-radius:50%;background-image:radial-gradient(circle at 50% 50%, rgba(59,130,246,.35), rgba(16,185,129,.25) 40%, rgba(0,0,0,0) 60%)}
+      .halftone:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;background-image:radial-gradient(currentColor 1px, transparent 1px);background-size:8px 8px;opacity:.15;filter:contrast(120%)}
+    </style>
   </head>
 
   <body class="grain bg-white text-ink-light dark:bg-[#0b0b0b] dark:text-ink-dark selection:bg-blue-200/60 dark:selection:bg-blue-400/30">
