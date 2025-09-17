@@ -25,12 +25,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Anton&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com" defer></script>
 
+    <!-- Tailwind config (light-only) -->
     <script>
       window.tailwind = window.tailwind || {};
       window.tailwind.config = {
-        darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
@@ -60,6 +59,7 @@
       };
     </script>
 
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <style>
@@ -81,30 +81,26 @@
     </style>
   </head>
 
-<body class="grain bg-white text-neutral-800 selection:bg-blue-200/60">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-blue-600 text-white px-3 py-2 rounded-lg z-[9999]">
-    Skip to content
-  </a>
+  <body class="grain bg-white text-neutral-800 selection:bg-blue-200/60">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-blue-600 text-white px-3 py-2 rounded-lg z-[9999]">Skip to content</a>
 
-
-    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-neutral-900/70 bg-white dark:bg-neutral-900 border-b border-neutral-200/60 dark:border-neutral-800">
+    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white border-b border-neutral-200/60">
       <div class="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
         <a href="#" class="font-slam text-2xl tracking-tight">Tirare</a>
-        <div class="ml-4 hidden md:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
-          <span class="px-2 py-1 rounded-full border border-neutral-200 dark:border-neutral-700">Dignity</span>
-          <span class="px-2 py-1 rounded-full border border-neutral-200 dark:border-neutral-700">Electric</span>
-          <span class="px-2 py-1 rounded-full border border-neutral-200 dark:border-neutral-700">Modular</span>
+        <div class="ml-4 hidden md:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-500">
+          <span class="px-2 py-1 rounded-full border border-neutral-200">Dignity</span>
+          <span class="px-2 py-1 rounded-full border border-neutral-200">Electric</span>
+          <span class="px-2 py-1 rounded-full border border-neutral-200">Modular</span>
         </div>
-<nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
-  <a href="#problem" class="u-kinetic">Problem</a>
-  <a href="#solution" class="u-kinetic">Solution</a>
-  <a href="#impact" class="u-kinetic">Impact</a>
-  <a href="#sdg" class="u-kinetic">SDGs</a>
-  <a href="#founder" class="u-kinetic">Founder</a> <!-- 🔹 New link -->
-  <a href="#contact" class="u-kinetic">Contact</a>
-</nav>
 
-        <button id="themeToggle" class="ml-2 rounded-xl px-3 py-2 bg-neutral-900 text-white dark:bg-neutral-100 dark:text-black shadow-soft" aria-label="Toggle dark mode">🌓</button>
+        <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
+          <a href="#problem" class="u-kinetic">Problem</a>
+          <a href="#solution" class="u-kinetic">Solution</a>
+          <a href="#impact" class="u-kinetic">Impact</a>
+          <a href="#sdg" class="u-kinetic">SDGs</a>
+          <a href="#founder" class="u-kinetic">Founder</a>
+          <a href="#contact" class="u-kinetic">Contact</a>
+        </nav>
       </div>
     </header>
 
@@ -113,35 +109,41 @@
 
       <section class="relative min-h-[92vh] grid place-items-center text-center px-6 md:px-10 overflow-hidden">
         <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-          <div class="font-slam text-[18vw] leading-none opacity-[.05] dark:opacity-[.08] select-none">DIGNITY</div>
+          <div class="font-slam text-[18vw] leading-none opacity-[.05] select-none">DIGNITY</div>
         </div>
         <div class="max-w-5xl fade-in">
-          <p class="mb-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black text-xs tracking-widest uppercase">High-school idea → City-scale movement</p>
+          <p class="mb-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 text-white text-xs tracking-widest uppercase">High-school idea → City-scale movement</p>
+
           <h1 class="text-4xl md:text-6xl font-black leading-tight font-display">
             Build <span class="relative inline-block px-1 rounded -rotate-1 bg-gradient-to-r from-brand-blue/10 to-brand-mint/10 ring-1 ring-brand-blue/20">Dignity-Machines</span> —
             retire the exploitative cart.
           </h1>
-          <p class="mt-6 text-lg md:text-xl text-neutral-700 dark:text-neutral-300">Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — designing dignity back into the street. Less pain. More pay. Humane cities.</p>
+
+          <p class="mt-6 text-lg md:text-xl text-neutral-700">Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — designing dignity back into the street. Less pain. More pay. Humane cities.</p>
+
           <div class="mt-10 flex items-center justify-center gap-4">
             <a href="#solution" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400 hover-rise pulse-once">Discover the vision</a>
-            <a href="#impact" class="px-6 py-3 rounded-xl bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 font-semibold shadow-soft hover-rise">See the data</a>
+            <a href="#impact" class="px-6 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 font-semibold shadow-soft hover-rise">See the data</a>
           </div>
+
           <div class="absolute inset-x-0 bottom-8 text-neutral-500 animate-bounce text-sm">Scroll ↓</div>
         </div>
-        <div class="absolute left-0 right-0 -bottom-24 h-48 bg-gradient-to-t from-blue-600/10 to-transparent dark:from-blue-400/10"></div>
+
+        <div class="absolute left-0 right-0 -bottom-24 h-48 bg-gradient-to-t from-blue-600/10 to-transparent"></div>
       </section>
 
       <!-- The Problem -->
-      <section id="problem" class="px-6 md:px-12 py-20 bg-cardLight dark:bg-cardDark fade-in">
+      <section id="problem" class="px-6 md:px-12 py-20 bg-neutral-50 fade-in">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-5xl font-extrabold mb-6 text-red-600 dark:text-red-400">The Problem</h2>
+          <h2 class="text-5xl font-extrabold mb-6 text-red-600">The Problem</h2>
           <div class="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <p class="text-xl font-medium leading-relaxed text-gray-800 dark:text-gray-100">
+              <p class="text-xl font-medium leading-relaxed text-gray-800">
                 <span class="block text-2xl font-bold mb-4">Over 3 million Indian laborers still rely on manually pulled carts.</span>
-                They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600 dark:text-red-400">₹300</span>.
+                They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600">₹300</span>.
               </p>
-              <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-gray-700 dark:text-gray-300">
+
+              <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-gray-700">
                 <li><strong>Average lifespan:</strong> 52 years</li>
                 <li><strong>Back injuries:</strong> Affect 78%</li>
                 <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
@@ -152,58 +154,59 @@
         </div>
       </section>
 
-      <section class="px-6 md:px-10 py-20 bg-rose-50 dark:bg-rose-900/20">
+      <section class="px-6 md:px-10 py-20 bg-rose-50">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <div class="fade-in">
-            <h2 class="text-4xl font-extrabold text-rose-700 dark:text-rose-300 mb-3">India Is Heating Up</h2>
-            <p class="text-lg leading-relaxed">With temperatures crossing <span class="font-bold text-rose-700 dark:text-rose-300">47 °C</span> in parts of India, street labourers pulling metal carts face rising risk of heatstroke and collapse.</p>
-            <p class="mt-3 text-neutral-700 dark:text-neutral-300"><em>“It’s not just hot. It’s inhuman.”</em> What does dignity mean when survival itself is at risk?</p>
+            <h2 class="text-4xl font-extrabold text-rose-700 mb-3">India Is Heating Up</h2>
+            <p class="text-lg leading-relaxed">With temperatures crossing <span class="font-bold text-rose-700">47 °C</span> in parts of India, street labourers pulling metal carts face rising risk of heatstroke and collapse.</p>
+            <p class="mt-3 text-neutral-700"><em>“It’s not just hot. It’s inhuman.”</em> What does dignity mean when survival itself is at risk?</p>
           </div>
+
           <figure class="fade-in order-first md:order-none">
             <img src="src/assets/heatwave.jpg" alt="Heatwave conditions in an Indian city" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
           </figure>
         </div>
       </section>
 
-      <section class="px-6 md:px-10 py-20 bg-amber-50 dark:bg-amber-900/20">
+      <section class="px-6 md:px-10 py-20 bg-amber-50">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <figure class="order-first md:order-none fade-in">
             <img src="Animal.jpeg" alt="Collapsed animal beside an overloaded cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover max-h-[520px]" />
           </figure>
           <div class="fade-in">
-            <h2 class="text-4xl font-extrabold text-amber-700 dark:text-amber-300 mb-3">Animals Deserve Dignity Too</h2>
+            <h2 class="text-4xl font-extrabold text-amber-700 mb-3">Animals Deserve Dignity Too</h2>
             <p class="text-lg leading-relaxed">Across many cities, horses, donkeys and oxen are still used to pull overloaded carts in extreme heat — often without water, rest, or care. When they collapse, they’re beaten instead of rescued.</p>
-            <p class="mt-3 text-neutral-700 dark:text-neutral-300">This is not tradition. It’s abuse — normalized on our streets.</p>
-            <p class="mt-4 font-semibold text-amber-800 dark:text-amber-300">Tirare stands for <em>all</em> lives. Our electric transition is also an animal-welfare revolution.</p>
+            <p class="mt-3 text-neutral-700">This is not tradition. It’s abuse — normalized on our streets.</p>
+            <p class="mt-4 font-semibold text-amber-800">Tirare stands for <em>all</em> lives. Our electric transition is also an animal-welfare revolution.</p>
           </div>
         </div>
       </section>
 
-      <section id="impact" class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
+      <section id="impact" class="px-6 md:px-10 py-20 bg-white">
         <div class="max-w-7xl mx-auto">
           <h2 class="text-4xl font-bold mb-8">Quantified Impact</h2>
           <div class="grid lg:grid-cols-2 gap-12">
             <div class="fade-in">
               <h3 class="text-2xl font-semibold mb-3">Daily Income Comparison (₹/day)</h3>
-              <canvas id="incomeChart" aria-label="Daily income comparison between cycle rickshaw and electric trike" role="img" class="bg-white dark:bg-neutral-900 p-4 rounded-xl shadow-soft"></canvas>
+              <canvas id="incomeChart" aria-label="Daily income comparison between cycle rickshaw and electric trike" role="img" class="bg-white p-4 rounded-xl shadow-soft"></canvas>
             </div>
             <div class="fade-in">
               <h3 class="text-2xl font-semibold mb-3">Lifecycle CO₂ Impact (kg/year, per vehicle)</h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2">We include manufacturing, material sourcing and energy across each vehicle’s lifecycle for fairness.</p>
-              <canvas id="co2Chart" aria-label="Lifecycle CO2 comparison" role="img" class="bg-white dark:bg-neutral-900 p-4 rounded-xl shadow-soft"></canvas>
+              <p class="text-sm text-neutral-600 mb-2">We include manufacturing, material sourcing and energy across each vehicle’s lifecycle for fairness.</p>
+              <canvas id="co2Chart" aria-label="Lifecycle CO2 comparison" role="img" class="bg-white p-4 rounded-xl shadow-soft"></canvas>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="solution" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-900/60 relative overflow-hidden">
+      <section id="solution" class="px-6 md:px-10 py-20 bg-neutral-50 relative overflow-hidden">
         <div class="absolute right-0 -bottom-20 w-80 h-80 rounded-full blur-3xl opacity-30 bg-gradient-to-tr from-brand-gold/20 to-brand-ember/20"></div>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div class="fade-in">
             <h2 class="text-4xl font-bold mb-4">Our Solution</h2>
             <h3 class="text-xl font-semibold mb-2">Electric Cargo Trikes — Built for Real India</h3>
-            <p class="text-neutral-700 dark:text-neutral-300">From brand-new electric trikes to retrofitted carts, our modular system restores dignity, saves lives and boosts income.</p>
-            <ul class="list-disc mt-4 ml-5 space-y-2 text-neutral-700 dark:text-neutral-300">
+            <p class="text-neutral-700">From brand-new electric trikes to retrofitted carts, our modular system restores dignity, saves lives and boosts income.</p>
+            <ul class="list-disc mt-4 ml-5 space-y-2 text-neutral-700">
               <li>Zero down-payment rent-to-own options</li>
               <li>Battery swap + lifetime service model</li>
               <li>Works for new builds and upgrades</li>
@@ -222,7 +225,7 @@
                 <p>3-month free trial for new cities or CSR pilots. Convert to Plan A/B post-trial.</p>
               </div>
             </div>
-            <p class="mt-6 text-blue-700 dark:text-blue-400 font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
+            <p class="mt-6 text-blue-700 font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
           </div>
           <figure class="fade-in">
             <img src="src/assets/metanoia-cart-diagram.png.png" alt="Exploded diagram of Tirare modular cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
@@ -230,25 +233,25 @@
         </div>
       </section>
 
-      <section class="px-6 md:px-10 py-20 bg-neutral-100 dark:bg-neutral-800">
+      <section class="px-6 md:px-10 py-20 bg-neutral-100">
         <div class="max-w-6xl mx-auto text-center">
           <h2 class="text-4xl font-bold mb-6">Impact Over Time</h2>
-          <canvas id="lineChart" height="380" class="rounded-xl shadow-soft bg-white dark:bg-neutral-900 p-4" aria-label="Projected impact over time" role="img"></canvas>
+          <canvas id="lineChart" height="380" class="rounded-xl shadow-soft bg-white p-4" aria-label="Projected impact over time" role="img"></canvas>
         </div>
       </section>
 
-      <section class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
+      <section class="px-6 md:px-10 py-20 bg-white">
         <div class="max-w-6xl mx-auto text-center">
           <h2 class="text-4xl font-bold mb-6">Cumulative Results</h2>
-          <canvas id="barChart" height="380" class="rounded-xl shadow-soft bg-white dark:bg-neutral-900 p-4" aria-label="Cumulative impact summary" role="img"></canvas>
+          <canvas id="barChart" height="380" class="rounded-xl shadow-soft bg-white p-4" aria-label="Cumulative impact summary" role="img"></canvas>
         </div>
       </section>
 
-      <section id="sdg" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-900">
+      <section id="sdg" class="px-6 md:px-10 py-20 bg-neutral-50">
         <div class="max-w-7xl mx-auto">
           <h2 class="text-4xl font-bold text-center">Tirare & the SDGs</h2>
           <div class="grid md:grid-cols-2 gap-12 mt-10 items-center">
-            <ul class="space-y-3 text-neutral-800 dark:text-neutral-200">
+            <ul class="space-y-3 text-neutral-800">
               <li><strong>SDG 1:</strong> End Poverty — Ownership-driven upliftment</li>
               <li><strong>SDG 3:</strong> Health — Less physical strain, better air</li>
               <li><strong>SDG 8:</strong> Decent Work — Green dignified employment</li>
@@ -262,102 +265,85 @@
         </div>
       </section>
 
-      <section class="relative px-6 md:px-10 py-16 bg-gradient-to-br from-neutral-100 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900">
+      <section class="relative px-6 md:px-10 py-16 bg-gradient-to-br from-neutral-100 via-white to-neutral-100">
         <div class="max-w-5xl mx-auto text-center fade-in">
-          <p class="text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">Movement Manifesto</p>
+          <p class="text-sm uppercase tracking-widest text-neutral-500">Movement Manifesto</p>
           <h3 class="mt-2 font-display text-3xl md:text-4xl leading-tight">This is how we change the world: design that refuses cruelty, finance that invites ownership, software that keeps promises.</h3>
-          <p class="mt-4 text-neutral-600 dark:text-neutral-300">If a city is a story we write together, let this chapter be called <span class="font-semibold">dignity</span>.</p>
+          <p class="mt-4 text-neutral-600">If a city is a story we write together, let this chapter be called <span class="font-semibold">dignity</span>.</p>
         </div>
       </section>
 
-      <section class="px-6 md:px-10 py-20 bg-neutral-100 dark:bg-neutral-950">
+      <section class="px-6 md:px-10 py-20 bg-neutral-100">
         <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-4xl font-bold mb-3">A Global Invitation</h2>
-          <p class="text-lg mb-6 text-neutral-600 dark:text-neutral-300">We invite UNDP, UNEP and UN-Habitat to help us redefine labour, empower workers and green our cities — together.</p>
+          <p class="text-lg mb-6 text-neutral-600">We invite UNDP, UNEP and UN-Habitat to help us redefine labour, empower workers and green our cities — together.</p>
           <a href="UN_AI_TIRARE1.pdf" target="_blank" rel="noopener noreferrer" class="inline-block">
             <span class="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft hover-rise">Read the UN Prospectus</span>
           </a>
         </div>
       </section>
 
+      <!-- Founders -->
+      <section id="founder" class="px-6 md:px-10 py-20 bg-neutral-50">
+        <div class="max-w-5xl mx-auto text-center fade-in">
+          <h2 class="text-4xl font-extrabold mb-10 text-blue-700">The Founder</h2>
 
-<!-- Founders -->
-<section id="founder" class="px-6 md:px-10 py-20 bg-neutral-50 dark:bg-neutral-900">
-  <div class="max-w-5xl mx-auto text-center fade-in">
-    <h2 class="text-4xl font-extrabold mb-10 text-blue-700 dark:text-blue-300">The Founder</h2>
+          <div class="relative max-w-xl mx-auto bg-white rounded-2xl shadow-soft p-8 hover-rise">
+            <img src="Anurag_profile.jpg" alt="Photo of Anurag Mishra" class="w-32 h-32 mx-auto rounded-full shadow-lg object-cover mb-6 ring-4 ring-blue-200">
+            <h3 class="text-2xl font-bold mb-1">Anurag Mishra</h3>
+            <p class="text-blue-600 text-sm uppercase tracking-widest mb-4">Founder, Tirare</p>
 
-    <div class="relative max-w-xl mx-auto bg-white dark:bg-neutral-800 rounded-2xl shadow-soft p-8 hover-rise">
-      <img src="Anurag_profile.jpg" alt="Photo of Anurag Mishra" class="w-32 h-32 mx-auto rounded-full shadow-lg object-cover mb-6 ring-4 ring-blue-200 dark:ring-blue-400">
-      
-      <h3 class="text-2xl font-bold mb-1">Anurag Mishra</h3>
-      <p class="text-blue-600 dark:text-blue-400 text-sm uppercase tracking-widest mb-4">
-        Founder, Tirare
-      </p>
+            <p class="text-lg leading-relaxed text-neutral-700">
+              A high-school innovator passionate about building humane cities, Anurag founded Tirare to
+              replace exploitative human- and animal-pulled carts with modular electric trikes.
+              He has been <span class="font-semibold text-blue-700">selected for Nationals</span>
+              in <span class="font-semibold text-blue-700">AI for Good Robotics</span>
+              for his work on social-impact innovation.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <p class="text-lg leading-relaxed text-neutral-700 dark:text-neutral-300">
-        A high-school innovator passionate about building humane cities, Anurag founded Tirare to
-        replace exploitative human- and animal-pulled carts with modular electric trikes.
-        He has been <span class="font-semibold text-blue-700 dark:text-blue-300">selected for Nationals</span> 
-        in <span class="font-semibold text-blue-700 dark:text-blue-300">AI for Good Robotics</span> 
-        for his work on social-impact innovation.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-      <section id="contact" class="px-6 md:px-10 py-20 bg-white dark:bg-neutral-950">
+      <section id="contact" class="px-6 md:px-10 py-20 bg-white">
         <div class="max-w-4xl mx-auto text-center">
           <h2 class="text-3xl font-bold mb-4">Join the Movement</h2>
-          <p class="mb-6 text-neutral-600 dark:text-neutral-300">Are you a policymaker, investor or global advocate? Let’s collaborate.</p>
+          <p class="mb-6 text-neutral-600">Are you a policymaker, investor or global advocate? Let’s collaborate.</p>
+
           <form action="https://formspree.io/f/mdkookkv" method="POST" class="grid md:grid-cols-2 gap-6 text-left" novalidate>
             <label class="hidden" aria-hidden="true">Do not fill this out<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
             <div class="md:col-span-1">
               <label for="name" class="block mb-1">Name</label>
-              <input id="name" name="name" type="text" required autocomplete="name" class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700" />
+              <input id="name" name="name" type="text" required autocomplete="name" class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200" />
             </div>
             <div class="md:col-span-1">
               <label for="email" class="block mb-1">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email" class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700" />
+              <input id="email" name="email" type="email" required autocomplete="email" class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200" />
             </div>
             <div class="md:col-span-2">
               <label for="subject" class="block mb-1">Subject</label>
-              <input id="subject" name="subject" type="text" class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700" />
+              <input id="subject" name="subject" type="text" class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200" />
             </div>
             <div class="md:col-span-2">
               <label for="message" class="block mb-1">Message</label>
-              <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-black dark:bg-neutral-800 dark:text-white shadow-soft border border-neutral-200 dark:border-neutral-700"></textarea>
+              <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200"></textarea>
             </div>
             <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft hover-rise">Send Message</button>
             <p id="formStatus" class="md:col-span-2 text-sm text-green-600 hidden">Thanks — we’ll be in touch soon.</p>
           </form>
-          <div class="mt-6 text-sm text-neutral-600 dark:text-neutral-400">
+
+          <div class="mt-6 text-sm text-neutral-600">
             <p>Founder: <strong>Anurag Mishra</strong> — <a href="https://drive.google.com/file/d/1nhxx5IZGC7x2gjT2EMHsAtEBY4ioIZgR/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="underline">Resume (Google Drive)</a></p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="text-center text-neutral-500 text-sm py-8 bg-neutral-50 dark:bg-black dark:text-neutral-400">
+    <footer class="text-center text-neutral-500 text-sm py-8 bg-neutral-50">
       <div>Tirare © 2025 · Built for dignity, backed by data.</div>
       <div class="mt-2 text-xs">Founder: Anurag Mishra · <a href="https://drive.google.com/file/d/1nhxx5IZGC7x2gjT2EMHsAtEBY4ioIZgR/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="underline">View resume</a></div>
     </footer>
 
     <script>
-      // Theme toggle (persisted)
-      const themeBtn = document.getElementById('themeToggle');
-      themeBtn?.addEventListener('click', () => {
-        document.documentElement.classList.toggle('dark');
-        const isDark = document.documentElement.classList.contains('dark');
-        try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch {}
-        // re-init charts to pick up theme colors
-        initCharts(true);
-      });
-      try {
-        const pref = localStorage.getItem('theme');
-        if (pref) document.documentElement.classList.toggle('dark', pref === 'dark');
-      } catch {}
-
       // Decorative wheel rotation on scroll
       (function initWheel(){
         const wheel = document.getElementById('wheel');
@@ -407,10 +393,15 @@
       const status = document.getElementById('formStatus');
       form?.addEventListener('submit', () => { status?.classList.remove('hidden'); });
 
-      // Chart utilities
+      // Chart utilities (light-mode defaults)
       function chartColors() {
-        const isDark = document.documentElement.classList.contains('dark');
-        return { grid: isDark ? '#262626' : '#e5e7eb', tick: isDark ? '#e5e7eb' : '#111827', tooltipBg: isDark ? '#111827' : '#1f2937', tooltipTitle: '#fff', tooltipBody: '#f3f4f6' };
+        return {
+          grid: '#e5e7eb',
+          tick: '#111827',
+          tooltipBg: '#1f2937',
+          tooltipTitle: '#fff',
+          tooltipBody: '#f3f4f6'
+        };
       }
 
       // Sample data
@@ -438,7 +429,6 @@
         const lineEl = document.getElementById('lineChart');
         const barEl = document.getElementById('barChart');
 
-        // ensure Chart is available
         if (!window.Chart || !incomeEl || !co2El || !lineEl || !barEl) return;
 
         charts.push(new Chart(incomeEl, {
@@ -494,10 +484,8 @@
         }));
       }
 
-      // Chart init: wait for full load to ensure Chart.js is parsed (chart.js is loaded defer)
+      // Chart init: wait for full load to ensure Chart.js is parsed
       window.addEventListener('load', () => initCharts(false));
-      // Re-init on theme change via storage (if multiple tabs)
-      window.addEventListener('storage', (e) => { if (e.key === 'theme') initCharts(true); });
     </script>
 
     <script type="application/ld+json">
