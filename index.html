@@ -1,510 +1,217 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tirare — Dignity Machines for Real India</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="description" content="Tirare replaces exploitative cycle-carts with modular electric dignity-machines — restoring health, income and humane cities." />
-    <link rel="canonical" href="https://tirare.tech/" />
+  <title>Tirare — Dignity Machines for Real India</title>
+  <meta name="description" content="Tirare replaces exploitative human- and animal-pulled carts with modular electric dignity-machines — restoring health, income, and humane cities." />
+  <link rel="canonical" href="https://tirare.tech/" />
 
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Tirare" />
-    <link rel="manifest" href="/site.webmanifest" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tirare — Dignity Machines for Real India" />
+  <meta property="og:description" content="Designing dignity back into informal labour through modular electric cargo trikes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.jpg" />
 
-    <meta property="og:title" content="Tirare — Dignity Machines for Real India" />
-    <meta property="og:description" content="Modular electric cargo trikes that uplift incomes and end street-side exploitation." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tirare.tech/" />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Anton&display=swap" rel="stylesheet" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Anton&display=swap" rel="stylesheet" />
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Tailwind config (light-only) -->
-    <script>
-      window.tailwind = window.tailwind || {};
-      window.tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['DM Sans', 'ui-sans-serif', 'system-ui'],
-              display: ['Space Grotesk', 'DM Sans', 'ui-sans-serif'],
-              slam: ['Anton', 'Impact', 'system-ui']
-            },
-            colors: {
-              ink: { light: '#111827', dark: '#e5e7eb' },
-              brand: {
-                blue: '#2563eb',
-                mint: '#10b981',
-                ember: '#ef4444',
-                gold: '#f59e0b'
-              }
-            },
-            boxShadow: {
-              soft: '0 10px 30px rgba(0,0,0,.08)',
-              glow: '0 0 0 8px rgba(37,99,235,.12)'
-            },
-            backgroundImage: {
-              grid: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,.06) 1px, transparent 0)',
-              gridDark: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0)'
-            }
-          }
-        }
-      };
-    </script>
+  <style>
+    body { font-family: 'DM Sans', system-ui; }
+    .fade-in { opacity:0; transform:translateY(24px); transition:all .9s ease }
+    .fade-in.is-visible { opacity:1; transform:none }
+    .hover-rise { transition:.3s }
+    .hover-rise:hover { transform:translateY(-4px) }
+  </style>
+</head>
 
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<body class="bg-white text-neutral-800">
 
-    <style>
-      html{scroll-behavior:smooth}
-      body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji'}
-      .fade-in{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
-      .fade-in.is-visible{opacity:1;transform:translateY(0)}
-      .hover-rise{transition:transform .35s ease, box-shadow .35s ease}
-      .hover-rise:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
-      .pulse-once{animation:pulse-once 1.6s ease 1}
-      @keyframes pulse-once{0%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}70%{box-shadow:0 0 0 22px rgba(37,99,235,0)}100%{box-shadow:none}}
-      .grain:before{content:"";position:fixed;inset:-50%;pointer-events:none;opacity:.06;z-index:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".5"/></svg>');mix-blend-mode:multiply}
-      @media (prefers-reduced-motion: reduce){.fade-in{opacity:1!important;transform:none!important}*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
-      .u-kinetic{position:relative}
-      .u-kinetic:after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:3px;background:linear-gradient(90deg,#2563eb,#10b981);transition:width .35s ease}
-      .u-kinetic:hover:after{width:100%}
-      #wheel{position:fixed;bottom:-200px;left:-200px;width:1000px;height:1000px;z-index:0;opacity:.25;pointer-events:none;border-radius:50%;background-image:radial-gradient(circle at 50% 50%, rgba(59,130,246,.35), rgba(16,185,129,.25) 40%, rgba(0,0,0,0) 60%)}
-      .halftone:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;background-image:radial-gradient(currentColor 1px, transparent 1px);background-size:8px 8px;opacity:.15;filter:contrast(120%)}
-    </style>
-  </head>
+<header class="sticky top-0 bg-white/80 backdrop-blur border-b z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+    <span class="font-['Anton'] text-2xl">Tirare</span>
+    <nav class="ml-auto hidden md:flex gap-6 text-sm">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#status">Status</a>
+      <a href="#impact">Impact</a>
+      <a href="#founder">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <body class="grain bg-white text-neutral-800 selection:bg-blue-200/60">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-blue-600 text-white px-3 py-2 rounded-lg z-[9999]">Skip to content</a>
+<main>
 
-    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white border-b border-neutral-200/60">
-      <div class="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
-        <a href="#" class="font-slam text-2xl tracking-tight">Tirare</a>
-        <div class="ml-4 hidden md:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-500">
-          <span class="px-2 py-1 rounded-full border border-neutral-200">Dignity</span>
-          <span class="px-2 py-1 rounded-full border border-neutral-200">Electric</span>
-          <span class="px-2 py-1 rounded-full border border-neutral-200">Modular</span>
-        </div>
+<!-- HERO -->
+<section class="min-h-[90vh] flex items-center justify-center text-center px-6">
+  <div class="max-w-4xl fade-in">
+    <p class="text-xs uppercase tracking-widest mb-4">A High-School Idea · A City-Scale Responsibility</p>
+    <h1 class="text-4xl md:text-6xl font-extrabold font-['Space Grotesk']">
+      Retire the Exploitative Cart.<br>
+      <span class="text-blue-600">Build Dignity-Machines.</span>
+    </h1>
+    <p class="mt-6 text-lg text-neutral-600">
+      Tirare replaces human- and animal-pulled carts with modular electric cargo trikes —
+      restoring health, income, and dignity to India’s informal workforce.
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a href="#solution" class="px-6 py-3 bg-blue-600 text-white rounded-xl">Our Solution</a>
+      <a href="#impact" class="px-6 py-3 bg-neutral-100 rounded-xl">Impact Data</a>
+    </div>
+  </div>
+</section>
 
-        <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
-          <a href="#problem" class="u-kinetic">Problem</a>
-          <a href="#solution" class="u-kinetic">Solution</a>
-          <a href="#impact" class="u-kinetic">Impact</a>
-          <a href="#sdg" class="u-kinetic">SDGs</a>
-          <a href="#founder" class="u-kinetic">Founder</a>
-          <a href="#contact" class="u-kinetic">Contact</a>
-        </nav>
+<!-- PROBLEM -->
+<section id="problem" class="py-20 px-6 bg-neutral-50">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center fade-in">
+    <div>
+      <h2 class="text-4xl font-bold text-red-600 mb-4">The Problem</h2>
+      <p class="text-lg">
+        Over <strong>3 million Indian workers</strong> still pull carts manually — burning extreme calories,
+        suffering spinal injuries, and earning less than ₹300/day.
+      </p>
+      <ul class="mt-6 list-disc ml-6 space-y-2">
+        <li>78% report chronic back pain</li>
+        <li>Average working lifespan: ~52 years</li>
+        <li>Heat exposure far beyond WHO limits</li>
+      </ul>
+    </div>
+    <img src="labor-cart.jpg" alt="Manual cart labour" class="rounded-2xl shadow-lg">
+  </div>
+</section>
+
+<!-- ANIMAL DIGNITY -->
+<section class="py-20 px-6 bg-amber-50">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center fade-in">
+    <img src="donkey.jpg" alt="Exhausted donkey" class="rounded-2xl shadow-lg">
+    <div>
+      <h2 class="text-4xl font-bold text-amber-700 mb-4">Animals Deserve Dignity Too</h2>
+      <p class="text-lg">
+        Horses, oxen, and donkeys are still forced to pull overloaded carts in extreme heat —
+        collapsing without care.
+      </p>
+      <p class="mt-4 font-semibold">
+        This is not tradition. It is normalized cruelty.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center fade-in">
+    <div>
+      <h2 class="text-4xl font-bold mb-4">Our Solution</h2>
+      <p class="text-lg">
+        Modular electric cargo trikes — designed for India’s streets,
+        informal economy, and dignity.
+      </p>
+      <ul class="mt-6 list-disc ml-6 space-y-2">
+        <li>Rent-to-own, zero upfront cost</li>
+        <li>Battery swap & service included</li>
+        <li>Retrofit compatible with existing carts</li>
+      </ul>
+    </div>
+    <img src="trike-diagram.png" alt="Tirare modular trike" class="rounded-2xl shadow-lg">
+  </div>
+</section>
+
+<!-- STATUS -->
+<section id="status" class="py-20 px-6 bg-neutral-50">
+  <div class="max-w-5xl mx-auto fade-in">
+    <h2 class="text-4xl font-bold mb-8">Where We Are Today</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="p-6 bg-white rounded-xl shadow">
+        <h3 class="font-bold">Stage</h3>
+        <p>Prototype & validation</p>
       </div>
-    </header>
+      <div class="p-6 bg-white rounded-xl shadow">
+        <h3 class="font-bold">Pilots</h3>
+        <p>Seeking 1–2 city pilots</p>
+      </div>
+      <div class="p-6 bg-white rounded-xl shadow">
+        <h3 class="font-bold">Manufacturing</h3>
+        <p>Modular design, supplier scouting</p>
+      </div>
+    </div>
+    <p class="mt-6 text-neutral-600">
+      Tirare is intentionally starting small — to get safety, dignity,
+      and economics right before scale.
+    </p>
+  </div>
+</section>
 
-    <main id="main" class="relative isolate">
-      <div id="wheel" aria-hidden="true"></div>
+<!-- IMPACT -->
+<section id="impact" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center fade-in">
+    <h2 class="text-4xl font-bold mb-6">Projected Impact</h2>
+    <canvas id="impactChart" class="bg-white p-6 rounded-xl shadow"></canvas>
+  </div>
+</section>
 
-      <section class="relative min-h-[92vh] grid place-items-center text-center px-6 md:px-10 overflow-hidden">
-        <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-          <div class="font-slam text-[18vw] leading-none opacity-[.05] select-none">DIGNITY</div>
-        </div>
-        <div class="max-w-5xl fade-in">
-          <p class="mb-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 text-white text-xs tracking-widest uppercase">High-school idea → City-scale movement</p>
+<!-- FOUNDER -->
+<section id="founder" class="py-20 px-6 bg-neutral-50">
+  <div class="max-w-xl mx-auto text-center fade-in">
+    <img src="anurag.jpg" class="w-32 h-32 mx-auto rounded-full mb-4 shadow">
+    <h3 class="text-2xl font-bold">Anurag Mishra</h3>
+    <p class="text-sm uppercase text-blue-600 mb-4">Founder · Tirare</p>
+    <p class="text-lg">
+      A high-school innovator building humane cities by replacing
+      exploitative labour systems with dignity-first design.
+    </p>
+  </div>
+</section>
 
-          <h1 class="text-4xl md:text-6xl font-black leading-tight font-display">
-            Build <span class="relative inline-block px-1 rounded -rotate-1 bg-gradient-to-r from-brand-blue/10 to-brand-mint/10 ring-1 ring-brand-blue/20">Dignity-Machines</span> —
-            retire the exploitative cart.
-          </h1>
+<!-- CONTACT -->
+<section id="contact" class="py-20 px-6">
+  <div class="max-w-4xl mx-auto text-center fade-in">
+    <h2 class="text-3xl font-bold mb-4">Join the Movement</h2>
+    <p class="mb-8">Policy partners · NGOs · CSR · Engineers · Mentors</p>
 
-          <p class="mt-6 text-lg md:text-xl text-neutral-700">Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — designing dignity back into the street. Less pain. More pay. Humane cities.</p>
+    <form action="https://formspree.io/f/mdkookkv" method="POST" class="grid md:grid-cols-2 gap-4">
+      <input name="name" placeholder="Name" required class="p-3 border rounded-xl">
+      <input name="email" type="email" placeholder="Email" required class="p-3 border rounded-xl">
+      <textarea name="message" placeholder="How would you like to help?" class="md:col-span-2 p-3 border rounded-xl"></textarea>
+      <button class="md:col-span-2 bg-blue-600 text-white py-3 rounded-xl">
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
 
-          <div class="mt-10 flex items-center justify-center gap-4">
-            <a href="#solution" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400 hover-rise pulse-once">Discover the vision</a>
-            <a href="#impact" class="px-6 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 font-semibold shadow-soft hover-rise">See the data</a>
-          </div>
+</main>
 
-          <div class="absolute inset-x-0 bottom-8 text-neutral-500 animate-bounce text-sm">Scroll ↓</div>
-        </div>
+<footer class="text-center text-sm text-neutral-500 py-6 bg-neutral-50">
+  Tirare © 2025 · Built for dignity, backed by intent.
+</footer>
 
-        <div class="absolute left-0 right-0 -bottom-24 h-48 bg-gradient-to-t from-blue-600/10 to-transparent"></div>
-      </section>
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting && e.target.classList.add('is-visible'))
+  }, { threshold:.15 })
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el))
 
-      <!-- The Problem -->
-      <section id="problem" class="px-6 md:px-12 py-20 bg-neutral-50 fade-in">
-        <div class="max-w-6xl mx-auto">
-          <h2 class="text-5xl font-extrabold mb-6 text-red-600">The Problem</h2>
-          <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <p class="text-xl font-medium leading-relaxed text-gray-800">
-                <span class="block text-2xl font-bold mb-4">Over 3 million Indian laborers still rely on manually pulled carts.</span>
-                They burn thousands of calories daily, endure extreme spinal strain, and often earn under <span class="font-semibold text-red-600">₹300</span>.
-              </p>
-
-              <ul class="list-disc mt-6 ml-6 space-y-3 text-lg text-gray-700">
-                <li><strong>Average lifespan:</strong> 52 years</li>
-                <li><strong>Back injuries:</strong> Affect 78%</li>
-                <li><strong>Air pollution exposure:</strong> 4× WHO safe limit</li>
-              </ul>
-            </div>
-            <img src="src/assets/laborer-current-cart.jpg.png" alt="Current labor cart" class="rounded-2xl shadow-xl transition-transform duration-500 hover:scale-105" />
-          </div>
-        </div>
-      </section>
-
-      <section class="px-6 md:px-10 py-20 bg-rose-50">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <div class="fade-in">
-            <h2 class="text-4xl font-extrabold text-rose-700 mb-3">India Is Heating Up</h2>
-            <p class="text-lg leading-relaxed">With temperatures crossing <span class="font-bold text-rose-700">47 °C</span> in parts of India, street labourers pulling metal carts face rising risk of heatstroke and collapse.</p>
-            <p class="mt-3 text-neutral-700"><em>“It’s not just hot. It’s inhuman.”</em> What does dignity mean when survival itself is at risk?</p>
-          </div>
-
-          <figure class="fade-in order-first md:order-none">
-            <img src="src/assets/heatwave.jpg" alt="Heatwave conditions in an Indian city" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="px-6 md:px-10 py-20 bg-amber-50">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <figure class="order-first md:order-none fade-in">
-            <img src="Animal.jpeg" alt="Collapsed animal beside an overloaded cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover max-h-[520px]" />
-          </figure>
-          <div class="fade-in">
-            <h2 class="text-4xl font-extrabold text-amber-700 mb-3">Animals Deserve Dignity Too</h2>
-            <p class="text-lg leading-relaxed">Across many cities, horses, donkeys and oxen are still used to pull overloaded carts in extreme heat — often without water, rest, or care. When they collapse, they’re beaten instead of rescued.</p>
-            <p class="mt-3 text-neutral-700">This is not tradition. It’s abuse — normalized on our streets.</p>
-            <p class="mt-4 font-semibold text-amber-800">Tirare stands for <em>all</em> lives. Our electric transition is also an animal-welfare revolution.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="impact" class="px-6 md:px-10 py-20 bg-white">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="text-4xl font-bold mb-8">Quantified Impact</h2>
-          <div class="grid lg:grid-cols-2 gap-12">
-            <div class="fade-in">
-              <h3 class="text-2xl font-semibold mb-3">Daily Income Comparison (₹/day)</h3>
-              <canvas id="incomeChart" aria-label="Daily income comparison between cycle rickshaw and electric trike" role="img" class="bg-white p-4 rounded-xl shadow-soft"></canvas>
-            </div>
-            <div class="fade-in">
-              <h3 class="text-2xl font-semibold mb-3">Lifecycle CO₂ Impact (kg/year, per vehicle)</h3>
-              <p class="text-sm text-neutral-600 mb-2">We include manufacturing, material sourcing and energy across each vehicle’s lifecycle for fairness.</p>
-              <canvas id="co2Chart" aria-label="Lifecycle CO2 comparison" role="img" class="bg-white p-4 rounded-xl shadow-soft"></canvas>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="solution" class="px-6 md:px-10 py-20 bg-neutral-50 relative overflow-hidden">
-        <div class="absolute right-0 -bottom-20 w-80 h-80 rounded-full blur-3xl opacity-30 bg-gradient-to-tr from-brand-gold/20 to-brand-ember/20"></div>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-          <div class="fade-in">
-            <h2 class="text-4xl font-bold mb-4">Our Solution</h2>
-            <h3 class="text-xl font-semibold mb-2">Electric Cargo Trikes — Built for Real India</h3>
-            <p class="text-neutral-700">From brand-new electric trikes to retrofitted carts, our modular system restores dignity, saves lives and boosts income.</p>
-            <ul class="list-disc mt-4 ml-5 space-y-2 text-neutral-700">
-              <li>Zero down-payment rent-to-own options</li>
-              <li>Battery swap + lifetime service model</li>
-              <li>Works for new builds and upgrades</li>
-            </ul>
-            <div class="mt-6 space-y-5 text-sm">
-              <div>
-                <h4 class="font-bold text-lg">✅ Plan A: Pay-as-You-Go</h4>
-                <p>₹0 upfront. ~₹60/day for ~30 months. Includes service, parts and battery swaps.</p>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg">✅ Plan B: NGO/SHG-Backed Microloan</h4>
-                <p>₹0 upfront. ₹1,500–₹2,000/month for 24–36 months via trusted local partners.</p>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg">✅ Plan C: Pilot Trial (CSR/Trust-Building)</h4>
-                <p>3-month free trial for new cities or CSR pilots. Convert to Plan A/B post-trial.</p>
-              </div>
-            </div>
-            <p class="mt-6 text-blue-700 font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
-          </div>
-          <figure class="fade-in">
-            <img src="src/assets/metanoia-cart-diagram.png.png" alt="Exploded diagram of Tirare modular cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
-          </figure>
-        </div>
-      </section>
-
-      <section class="px-6 md:px-10 py-20 bg-neutral-100">
-        <div class="max-w-6xl mx-auto text-center">
-          <h2 class="text-4xl font-bold mb-6">Impact Over Time</h2>
-          <canvas id="lineChart" height="380" class="rounded-xl shadow-soft bg-white p-4" aria-label="Projected impact over time" role="img"></canvas>
-        </div>
-      </section>
-
-      <section class="px-6 md:px-10 py-20 bg-white">
-        <div class="max-w-6xl mx-auto text-center">
-          <h2 class="text-4xl font-bold mb-6">Cumulative Results</h2>
-          <canvas id="barChart" height="380" class="rounded-xl shadow-soft bg-white p-4" aria-label="Cumulative impact summary" role="img"></canvas>
-        </div>
-      </section>
-
-      <section id="sdg" class="px-6 md:px-10 py-20 bg-neutral-50">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="text-4xl font-bold text-center">Tirare & the SDGs</h2>
-          <div class="grid md:grid-cols-2 gap-12 mt-10 items-center">
-            <ul class="space-y-3 text-neutral-800">
-              <li><strong>SDG 1:</strong> End Poverty — Ownership-driven upliftment</li>
-              <li><strong>SDG 3:</strong> Health — Less physical strain, better air</li>
-              <li><strong>SDG 8:</strong> Decent Work — Green dignified employment</li>
-              <li><strong>SDG 9:</strong> Innovation — Sustainable mobility at scale</li>
-              <li><strong>SDG 11:</strong> Better Cities — Empowered informal workers</li>
-            </ul>
-            <figure>
-              <img src="sdgs (1).png" alt="UN Sustainable Development Goals grid" loading="lazy" class="rounded-xl shadow-soft w-full" />
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section class="relative px-6 md:px-10 py-16 bg-gradient-to-br from-neutral-100 via-white to-neutral-100">
-        <div class="max-w-5xl mx-auto text-center fade-in">
-          <p class="text-sm uppercase tracking-widest text-neutral-500">Movement Manifesto</p>
-          <h3 class="mt-2 font-display text-3xl md:text-4xl leading-tight">This is how we change the world: design that refuses cruelty, finance that invites ownership, software that keeps promises.</h3>
-          <p class="mt-4 text-neutral-600">If a city is a story we write together, let this chapter be called <span class="font-semibold">dignity</span>.</p>
-        </div>
-      </section>
-
-      <section class="px-6 md:px-10 py-20 bg-neutral-100">
-        <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-4xl font-bold mb-3">A Global Invitation</h2>
-          <p class="text-lg mb-6 text-neutral-600">We invite UNDP, UNEP and UN-Habitat to help us redefine labour, empower workers and green our cities — together.</p>
-          <a href="UN_AI_TIRARE1.pdf" target="_blank" rel="noopener noreferrer" class="inline-block">
-            <span class="text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft hover-rise">Read the UN Prospectus</span>
-          </a>
-        </div>
-      </section>
-
-      <!-- Founders -->
-      <section id="founder" class="px-6 md:px-10 py-20 bg-neutral-50">
-        <div class="max-w-5xl mx-auto text-center fade-in">
-          <h2 class="text-4xl font-extrabold mb-10 text-blue-700">The Founder</h2>
-
-          <div class="relative max-w-xl mx-auto bg-white rounded-2xl shadow-soft p-8 hover-rise">
-            <img src="Anurag_profile.jpg" alt="Photo of Anurag Mishra" class="w-32 h-32 mx-auto rounded-full shadow-lg object-cover mb-6 ring-4 ring-blue-200">
-            <h3 class="text-2xl font-bold mb-1">Anurag Mishra</h3>
-            <p class="text-blue-600 text-sm uppercase tracking-widest mb-4">Founder, Tirare</p>
-
-            <p class="text-lg leading-relaxed text-neutral-700">
-              A high-school innovator passionate about building humane cities, Anurag founded Tirare to
-              replace exploitative human- and animal-pulled carts with modular electric trikes.
-              He has been <span class="font-semibold text-blue-700">selected for Nationals</span>
-              in <span class="font-semibold text-blue-700">AI for Good Robotics</span>
-              for his work on social-impact innovation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="px-6 md:px-10 py-20 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-3xl font-bold mb-4">Join the Movement</h2>
-          <p class="mb-6 text-neutral-600">Are you a policymaker, investor or global advocate? Let’s collaborate.</p>
-
-          <form action="https://formspree.io/f/mdkookkv" method="POST" class="grid md:grid-cols-2 gap-6 text-left" novalidate>
-            <label class="hidden" aria-hidden="true">Do not fill this out<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
-            <div class="md:col-span-1">
-              <label for="name" class="block mb-1">Name</label>
-              <input id="name" name="name" type="text" required autocomplete="name" class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200" />
-            </div>
-            <div class="md:col-span-1">
-              <label for="email" class="block mb-1">Email</label>
-              <input id="email" name="email" type="email" required autocomplete="email" class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200" />
-            </div>
-            <div class="md:col-span-2">
-              <label for="subject" class="block mb-1">Subject</label>
-              <input id="subject" name="subject" type="text" class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200" />
-            </div>
-            <div class="md:col-span-2">
-              <label for="message" class="block mb-1">Message</label>
-              <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-xl bg-white text-neutral-800 shadow-soft border border-neutral-200"></textarea>
-            </div>
-            <button type="submit" class="md:col-span-2 text-lg px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-soft hover-rise">Send Message</button>
-            <p id="formStatus" class="md:col-span-2 text-sm text-green-600 hidden">Thanks — we’ll be in touch soon.</p>
-          </form>
-
-          <div class="mt-6 text-sm text-neutral-600">
-            <p>Founder: <strong>Anurag Mishra</strong> — <a href="https://drive.google.com/file/d/1nhxx5IZGC7x2gjT2EMHsAtEBY4ioIZgR/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="underline">Resume (Google Drive)</a></p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="text-center text-neutral-500 text-sm py-8 bg-neutral-50">
-      <div>Tirare © 2025 · Built for dignity, backed by data.</div>
-      <div class="mt-2 text-xs">Founder: Anurag Mishra · <a href="https://drive.google.com/file/d/1nhxx5IZGC7x2gjT2EMHsAtEBY4ioIZgR/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="underline">View resume</a></div>
-    </footer>
-
-    <script>
-      // Decorative wheel rotation on scroll
-      (function initWheel(){
-        const wheel = document.getElementById('wheel');
-        if (!wheel) return;
-        let rot = 0; let lastY = window.scrollY;
-        const onScroll = () => {
-          const y = window.scrollY;
-          const delta = y - lastY;
-          lastY = y;
-          rot += delta * 0.15;
-          wheel.style.transform = `rotate(${rot}deg)`;
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-      })();
-
-      // Fade-in observer
-      const io = new IntersectionObserver((entries) => {
-        for (const e of entries) if (e.isIntersecting) e.target.classList.add('is-visible');
-      }, { threshold: .15 });
-      document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-
-      // Small counting helper (if you add elements with .count)
-      const countEls = document.querySelectorAll('.count');
-      const fmt = new Intl.NumberFormat('en-IN');
-      const stepper = (el, target) => {
-        const start = 0; const dur = 1200; const t0 = performance.now();
-        const tick = (now) => {
-          const p = Math.min(1, (now - t0) / dur);
-          el.textContent = fmt.format(Math.floor(p * target));
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      };
-      const ioCount = new IntersectionObserver((entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            const target = +e.target.dataset.target || 0;
-            stepper(e.target, target);
-            ioCount.unobserve(e.target);
-          }
-        }
-      }, { threshold: .4 });
-      countEls.forEach(el => ioCount.observe(el));
-
-      // Form status visual feedback
-      const form = document.querySelector('form[action^="https://formspree.io"]');
-      const status = document.getElementById('formStatus');
-      form?.addEventListener('submit', () => { status?.classList.remove('hidden'); });
-
-      // Chart utilities (light-mode defaults)
-      function chartColors() {
-        return {
-          grid: '#e5e7eb',
-          tick: '#111827',
-          tooltipBg: '#1f2937',
-          tooltipTitle: '#fff',
-          tooltipBody: '#f3f4f6'
-        };
-      }
-
-      // Sample data
-      const impactData = {
-        labels: ['0', '100000', '200000', '300000', '400000', '500000'],
-        datasets: [
-          { label: 'Projected CO₂ Savings (kg)', data: [0, 120000000, 240000000, 360000000, 480000000, 600000000], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,.2)', tension: .4, pointRadius: 3, pointHoverRadius: 6 },
-          { label: 'Projected Income Uplift (₹)', data: [0, 18000000000, 36000000000, 54000000000, 72000000000, 90000000000], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,.2)', tension: .4, pointRadius: 3, pointHoverRadius: 6 },
-          { label: 'Projected Labor Hours Saved', data: [0, 120000000, 240000000, 360000000, 480000000, 600000000], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.2)', tension: .4, pointRadius: 3, pointHoverRadius: 6 }
-        ]
-      };
-
-      const summaryData = {
-        labels: ['Carts Projected', 'CO₂ Saved (kg)', 'Hours Freed', 'Income Uplift (₹)'],
-        datasets: [{ label: 'Projected Impact Summary', data: [500000, 600000000, 600000000, 90000000000], backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'], borderRadius: 12 }]
-      };
-
-      let charts = [];
-      function initCharts(redraw = false) {
-        const { grid, tick, tooltipBg, tooltipTitle, tooltipBody } = chartColors();
-        if (redraw) { charts.forEach(c => c.destroy?.()); charts = []; }
-
-        const incomeEl = document.getElementById('incomeChart');
-        const co2El = document.getElementById('co2Chart');
-        const lineEl = document.getElementById('lineChart');
-        const barEl = document.getElementById('barChart');
-
-        if (!window.Chart || !incomeEl || !co2El || !lineEl || !barEl) return;
-
-        charts.push(new Chart(incomeEl, {
-          type: 'bar',
-          data: { labels: ['Cycle Rickshaw', 'Electric Trike'], datasets: [
-            { label: 'Low Estimate', data: [60, 500], backgroundColor: 'rgba(16,185,129,.85)' },
-            { label: 'High Estimate', data: [150, 1000], backgroundColor: 'rgba(34,197,94,.85)' }
-          ]},
-          options: {
-            responsive: true,
-            scales: {
-              y: { beginAtZero: true, title: { display: true, text: '₹ per day' }, ticks: { color: tick }, grid: { color: grid } },
-              x: { ticks: { color: tick }, grid: { display: false } }
-            },
-            plugins: { legend: { labels: { color: tick } }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } }
-          }
-        }));
-
-        charts.push(new Chart(co2El, {
-          type: 'bar',
-          data: { labels: ['Cycle Rickshaw', 'Electric Trike'], datasets: [
-            { label: 'Lifecycle (Low)', data: [150, 650], backgroundColor: 'rgba(99,102,241,.85)' },
-            { label: 'Lifecycle (High)', data: [210, 900], backgroundColor: 'rgba(56,189,248,.85)' }
-          ]},
-          options: {
-            responsive: true,
-            scales: {
-              y: { beginAtZero: true, title: { display: true, text: 'kg CO₂/year (Lifecycle)' }, ticks: { color: tick }, grid: { color: grid } },
-              x: { ticks: { color: tick }, grid: { display: false } }
-            },
-            plugins: { legend: { position: 'bottom', labels: { color: tick } }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } }
-          }
-        }));
-
-        charts.push(new Chart(lineEl, {
-          type: 'line',
-          data: impactData,
-          options: {
-            responsive: true,
-            plugins: { legend: { labels: { color: tick } }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } },
-            scales: { x: { ticks: { color: tick }, grid: { color: grid } }, y: { ticks: { color: tick }, grid: { color: grid } } }
-          }
-        }));
-
-        charts.push(new Chart(barEl, {
-          type: 'bar',
-          data: summaryData,
-          options: {
-            responsive: true,
-            plugins: { legend: { display: false }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipTitle, bodyColor: tooltipBody } },
-            scales: { x: { ticks: { color: tick }, grid: { display: false } }, y: { beginAtZero: true, ticks: { color: tick }, grid: { color: grid } } }
-          }
-        }));
-      }
-
-      // Chart init: wait for full load to ensure Chart.js is parsed
-      window.addEventListener('load', () => initCharts(false));
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Tirare",
-      "url": "https://tirare.tech/",
-      "logo": "https://tirare.tech/favicon-96x96.png",
-      "founder": {
-        "@type": "Person",
-        "name": "Anurag Mishra",
-        "sameAs": "https://drive.google.com/file/d/1nhxx5IZGC7x2gjT2EMHsAtEBY4ioIZgR/view?usp=drivesdk"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/tirare",
-        "https://drive.google.com/file/d/1nhxx5IZGC7x2gjT2EMHsAtEBY4ioIZgR/view?usp=drivesdk"
-      ]
+  new Chart(document.getElementById('impactChart'), {
+    type:'line',
+    data:{
+      labels:['0','100k','200k','300k','400k','500k'],
+      datasets:[{
+        label:'CO₂ Saved (kg)',
+        data:[0,120e6,240e6,360e6,480e6,600e6],
+        borderColor:'#2563eb',
+        tension:.4
+      }]
     }
-    </script>
-  </body>
+  })
+</script>
+
+</body>
 </html>
