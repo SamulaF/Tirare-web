@@ -3,11 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tirare — Dignity Machines for Real India</title>
 
-    <meta name="description" content="Tirare replaces exploitative cycle-carts with modular electric dignity-machines — restoring health, income and humane cities." />
+    <title>Tirare — Axle-Based Electric Retrofit for Dignified Work</title>
+
+    <!-- Primary description (engineering-first, honest) -->
+    <meta
+      name="description"
+      content="Tirare is a non-invasive electric retrofit system for existing cargo trikes and cycle carts — reducing physical strain while preserving livelihoods, serviceability, and local repair ecosystems."
+    />
+
     <link rel="canonical" href="https://tirare.tech/" />
 
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,122 +22,448 @@
     <meta name="apple-mobile-web-app-title" content="Tirare" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <meta property="og:title" content="Tirare — Dignity Machines for Real India" />
-    <meta property="og:description" content="Modular electric cargo trikes that uplift incomes and end street-side exploitation." />
+    <!-- Open Graph (share previews) -->
+    <meta property="og:title" content="Tirare — Electric Retrofit Systems for Dignified Work" />
+    <meta
+      property="og:description"
+      content="An axle-based electric retrofit system for cargo trikes and carts — engineered to reduce human strain without replacing vehicles or livelihoods."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tirare.tech/" />
     <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Fonts: Human + Technical -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Anton&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Anton&display=swap"
+      rel="stylesheet"
+    />
+
 
     <!-- Tailwind config (light-only) -->
-    <script>
-      window.tailwind = window.tailwind || {};
-      window.tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['DM Sans', 'ui-sans-serif', 'system-ui'],
-              display: ['Space Grotesk', 'DM Sans', 'ui-sans-serif'],
-              slam: ['Anton', 'Impact', 'system-ui']
-            },
-            colors: {
-              ink: { light: '#111827', dark: '#e5e7eb' },
-              brand: {
-                blue: '#2563eb',
-                mint: '#10b981',
-                ember: '#ef4444',
-                gold: '#f59e0b'
-              }
-            },
-            boxShadow: {
-              soft: '0 10px 30px rgba(0,0,0,.08)',
-              glow: '0 0 0 8px rgba(37,99,235,.12)'
-            },
-            backgroundImage: {
-              grid: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,.06) 1px, transparent 0)',
-              gridDark: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0)'
-            }
+<script>
+  window.tailwind = window.tailwind || {};
+  window.tailwind.config = {
+    theme: {
+      extend: {
+        /* =========================
+           TYPOGRAPHY
+        ========================= */
+        fontFamily: {
+          sans: ['DM Sans', 'ui-sans-serif', 'system-ui'],
+          display: ['Space Grotesk', 'DM Sans', 'ui-sans-serif'],
+          slam: ['Anton', 'Impact', 'system-ui'],
+          mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+        },
+
+        /* =========================
+           COLOR SYSTEM
+           (calm, technical, printable)
+        ========================= */
+        colors: {
+          ink: {
+            light: '#111827',
+            muted: '#374151',
+            faint: '#6b7280'
+          },
+          paper: '#f9fafb',
+          line: '#e5e7eb',
+          brand: {
+            blue: '#2563eb',
+            mint: '#10b981',
+            ember: '#ef4444',
+            gold: '#f59e0b'
+          },
+          blueprint: {
+            bg: '#0f172a',
+            grid: 'rgba(255,255,255,0.06)',
+            line: 'rgba(147,197,253,0.55)'
           }
+        },
+
+        /* =========================
+           SHADOWS & DEPTH
+        ========================= */
+        boxShadow: {
+          soft: '0 10px 30px rgba(0,0,0,.08)',
+          float: '0 20px 50px rgba(0,0,0,.12)',
+          inset: 'inset 0 0 0 1px rgba(0,0,0,.06)',
+          glow: '0 0 0 6px rgba(37,99,235,.14)'
+        },
+
+        /* =========================
+           BACKGROUNDS (ENGINEERING)
+        ========================= */
+        backgroundImage: {
+          /* light engineering grid */
+          grid:
+            'radial-gradient(circle at 1px 1px, rgba(0,0,0,.08) 1px, transparent 0)',
+          
+          /* blueprint grid */
+          blueprint:
+            'linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px)',
+
+          /* subtle scanline */
+          scan:
+            'linear-gradient(to bottom, rgba(0,0,0,.04) 1px, transparent 1px)'
+        },
+
+        backgroundSize: {
+          grid: '18px 18px',
+          blueprint: '24px 24px',
+          scan: '100% 4px'
+        },
+
+        /* =========================
+           SPACING / RADIUS
+        ========================= */
+        borderRadius: {
+          xl: '1rem',
+          '2xl': '1.25rem',
+          frame: '1.5rem'
         }
-      };
-    </script>
+      }
+    }
+  };
+</script>
 
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<script src="https://cdn.tailwindcss.com" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
-    <style>
-      html{scroll-behavior:smooth}
-      body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji'}
-      .fade-in{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
-      .fade-in.is-visible{opacity:1;transform:translateY(0)}
-      .hover-rise{transition:transform .35s ease, box-shadow .35s ease}
-      .hover-rise:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
-      .pulse-once{animation:pulse-once 1.6s ease 1}
-      @keyframes pulse-once{0%{box-shadow:0 0 0 0 rgba(37,99,235,.25)}70%{box-shadow:0 0 0 22px rgba(37,99,235,0)}100%{box-shadow:none}}
-      .grain:before{content:"";position:fixed;inset:-50%;pointer-events:none;opacity:.06;z-index:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".5"/></svg>');mix-blend-mode:multiply}
-      @media (prefers-reduced-motion: reduce){.fade-in{opacity:1!important;transform:none!important}*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
-      .u-kinetic{position:relative}
-      .u-kinetic:after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:3px;background:linear-gradient(90deg,#2563eb,#10b981);transition:width .35s ease}
-      .u-kinetic:hover:after{width:100%}
-      #wheel{position:fixed;bottom:-200px;left:-200px;width:1000px;height:1000px;z-index:0;opacity:.25;pointer-events:none;border-radius:50%;background-image:radial-gradient(circle at 50% 50%, rgba(59,130,246,.35), rgba(16,185,129,.25) 40%, rgba(0,0,0,0) 60%)}
-      .halftone:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;background-image:radial-gradient(currentColor 1px, transparent 1px);background-size:8px 8px;opacity:.15;filter:contrast(120%)}
-    </style>
-  </head>
+<style>
+  /* =========================
+     GLOBAL BEHAVIOR
+  ========================= */
+  html { scroll-behavior: smooth; }
 
-  <body class="grain bg-white text-neutral-800 selection:bg-blue-200/60">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-blue-600 text-white px-3 py-2 rounded-lg z-[9999]">Skip to content</a>
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+    background-color: #ffffff;
+  }
 
-    <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white border-b border-neutral-200/60">
-      <div class="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
-        <a href="#" class="font-slam text-2xl tracking-tight">Tirare</a>
-        <div class="ml-4 hidden md:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-500">
-          <span class="px-2 py-1 rounded-full border border-neutral-200">Dignity</span>
-          <span class="px-2 py-1 rounded-full border border-neutral-200">Electric</span>
-          <span class="px-2 py-1 rounded-full border border-neutral-200">Modular</span>
-        </div>
+  /* =========================
+     MOTION & ACCESSIBILITY
+  ========================= */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
 
-        <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
-          <a href="#problem" class="u-kinetic">Problem</a>
-          <a href="#solution" class="u-kinetic">Solution</a>
-          <a href="#impact" class="u-kinetic">Impact</a>
-          <a href="#sdg" class="u-kinetic">SDGs</a>
-          <a href="#founder" class="u-kinetic">Founder</a>
-          <a href="#contact" class="u-kinetic">Contact</a>
-        </nav>
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hover-rise {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .hover-rise:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .pulse-once {
+    animation: pulse-once 1.6s ease 1;
+  }
+
+  @keyframes pulse-once {
+    0%   { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.25); }
+    70%  { box-shadow: 0 0 0 22px rgba(37, 99, 235, 0); }
+    100% { box-shadow: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    * {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* =========================
+     ENGINEERING GRAIN (SUBTLE)
+  ========================= */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    opacity: 0.045;
+    z-index: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".45"/></svg>');
+    mix-blend-mode: multiply;
+  }
+
+  /* =========================
+     LINK UNDERLINE (KINETIC)
+  ========================= */
+  .u-kinetic {
+    position: relative;
+  }
+
+  .u-kinetic::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+    transition: width 0.35s ease;
+  }
+
+  .u-kinetic:hover::after {
+    width: 100%;
+  }
+
+  /* =========================
+     ENGINEERING GRID BACKDROP
+     (used selectively)
+  ========================= */
+  .bg-engineering {
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-blueprint {
+    background-color: #0f172a;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* =========================
+     TECHNICAL FRAME
+     (for diagrams & sections)
+  ========================= */
+  .tech-frame {
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 1.25rem;
+    background: #ffffff;
+  }
+
+  .tech-frame::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px dashed rgba(0,0,0,0.08);
+    border-radius: 1rem;
+    pointer-events: none;
+  }
+
+  /* =========================
+     TECH LABEL / MARGINALIA
+  ========================= */
+  .tech-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+
+  /* =========================
+     DECORATIVE WHEEL (CONTEXT)
+  ========================= */
+  #wheel {
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    width: 1000px;
+    height: 1000px;
+    z-index: 0;
+    opacity: 0.22;
+    pointer-events: none;
+    border-radius: 50%;
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      rgba(59,130,246,0.35),
+      rgba(16,185,129,0.25) 40%,
+      rgba(0,0,0,0) 60%
+    );
+  }
+
+  /* =========================
+     HALFTONE MARKER (RARE USE)
+  ========================= */
+  .halftone::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 220px;
+    height: 220px;
+    background-image: radial-gradient(currentColor 1px, transparent 1px);
+    background-size: 8px 8px;
+    opacity: 0.12;
+    filter: contrast(120%);
+  }
+</style>
+
+<body class="grain bg-white text-neutral-800 selection:bg-blue-200/60">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 bg-blue-600 text-white px-3 py-2 rounded-lg z-[9999]"
+  >
+    Skip to content
+  </a>
+
+  <!-- =========================
+       HEADER / NAVIGATION
+       ========================= -->
+  <header
+    class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white border-b border-neutral-200/60"
+  >
+    <div class="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
+
+      <!-- Brand -->
+      <a href="#" class="font-slam text-2xl tracking-tight">
+        Tirare
+      </a>
+
+      <!-- Engineering Tags -->
+      <div
+        class="ml-4 hidden md:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-500"
+      >
+        <span class="px-2 py-1 rounded-full border border-neutral-200">
+          Dignity
+        </span>
+        <span class="px-2 py-1 rounded-full border border-neutral-200">
+          Electric
+        </span>
+        <span class="px-2 py-1 rounded-full border border-neutral-200">
+          Modular
+        </span>
       </div>
-    </header>
 
-    <main id="main" class="relative isolate">
-      <div id="wheel" aria-hidden="true"></div>
+      <!-- Navigation -->
+      <nav
+        class="ml-auto hidden md:flex items-center gap-6 text-sm"
+        aria-label="Primary"
+      >
+        <a href="#problem" class="u-kinetic">Problem</a>
+        <a href="#solution" class="u-kinetic">Solution</a>
+        <a href="#impact" class="u-kinetic">Impact</a>
+        <a href="#sdg" class="u-kinetic">SDGs</a>
+        <a href="#founder" class="u-kinetic">Founder</a>
+        <a href="#contact" class="u-kinetic">Contact</a>
+      </nav>
+    </div>
 
-      <section class="relative min-h-[92vh] grid place-items-center text-center px-6 md:px-10 overflow-hidden">
-        <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-          <div class="font-slam text-[18vw] leading-none opacity-[.05] select-none">DIGNITY</div>
+    <!-- Subtle technical baseline -->
+    <div class="h-px bg-neutral-200/40"></div>
+  </header>
+
+<main id="main" class="relative isolate">
+  <div id="wheel" aria-hidden="true"></div>
+
+  <section class="relative min-h-[92vh] grid place-items-center px-6 md:px-10 overflow-hidden">
+    
+    <!-- Subtle engineering wordmark -->
+    <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+      <div class="font-slam text-[16vw] leading-none opacity-[.035] select-none tracking-wider">
+        RETROFIT
+      </div>
+    </div>
+
+    <div class="max-w-5xl fade-in text-center">
+
+      <!-- Technical context label -->
+      <p class="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 text-neutral-600 text-[11px] tracking-widest uppercase font-mono">
+        Axle-Based Electric Retrofit · Gen-1 System
+      </p>
+
+      <!-- Headline -->
+      <h1 class="text-4xl md:text-6xl font-semibold leading-tight font-display text-ink-light">
+        Electric assist for
+        <span class="block">
+          existing cargo trikes —
+        </span>
+        <span class="text-ink-muted">
+          without replacing the vehicle
+          <br class="hidden sm:block" />
+          or the livelihood.
+        </span>
+      </h1>
+
+      <!-- Subtext -->
+      <p class="mt-6 text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto">
+        Tirare is a non-invasive, axle-centric electric retrofit system for cargo
+        trikes and cycle carts already in use. It reduces physical strain while
+        preserving ownership, serviceability, and local repair ecosystems.
+      </p>
+
+      <!-- Constraint strip -->
+      <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-left">
+
+        <div class="tech-frame p-4">
+          <p class="tech-label mb-2">Constraint</p>
+          <p class="text-sm text-ink-muted">
+            No frame cutting<br />
+            No new chassis
+          </p>
         </div>
-        <div class="max-w-5xl fade-in">
-          <p class="mb-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 text-white text-xs tracking-widest uppercase">High-school idea → City-scale movement</p>
 
-          <h1 class="text-4xl md:text-6xl font-black leading-tight font-display">
-            Build <span class="relative inline-block px-1 rounded -rotate-1 bg-gradient-to-r from-brand-blue/10 to-brand-mint/10 ring-1 ring-brand-blue/20">Dignity-Machines</span> —
-            retire the exploitative cart.
-          </h1>
-
-          <p class="mt-6 text-lg md:text-xl text-neutral-700">Tirare replaces exploitative cycle-carts with modular, electric dignity-machines — designing dignity back into the street. Less pain. More pay. Humane cities.</p>
-
-          <div class="mt-10 flex items-center justify-center gap-4">
-            <a href="#solution" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400 hover-rise pulse-once">Discover the vision</a>
-            <a href="#impact" class="px-6 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 font-semibold shadow-soft hover-rise">See the data</a>
-          </div>
-
-          <div class="absolute inset-x-0 bottom-8 text-neutral-500 animate-bounce text-sm">Scroll ↓</div>
+        <div class="tech-frame p-4">
+          <p class="tech-label mb-2">Architecture</p>
+          <p class="text-sm text-ink-muted">
+            Axle-mounted drive<br />
+            Mechanical torque transfer
+          </p>
         </div>
 
-        <div class="absolute left-0 right-0 -bottom-24 h-48 bg-gradient-to-t from-blue-600/10 to-transparent"></div>
-      </section>
+        <div class="tech-frame p-4">
+          <p class="tech-label mb-2">Objective</p>
+          <p class="text-sm text-ink-muted">
+            Reduce fatigue<br />
+            Preserve income
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-12 flex items-center justify-center gap-4">
+        <a
+          href="#solution"
+          class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400 hover-rise"
+        >
+          View the system
+        </a>
+        <a
+          href="#impact"
+          class="px-6 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 font-semibold shadow-soft hover-rise"
+        >
+          See performance data
+        </a>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="mt-16 text-neutral-500 text-sm">
+        Scroll ↓
+      </div>
+
+    </div>
+
+    <!-- Bottom fade -->
+    <div class="absolute left-0 right-0 -bottom-24 h-48 bg-gradient-to-t from-blue-600/10 to-transparent"></div>
+  </section>
+</main>
 
       <!-- The Problem -->
       <section id="problem" class="px-6 md:px-12 py-20 bg-neutral-50 fade-in">
@@ -204,7 +537,7 @@
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div class="fade-in">
             <h2 class="text-4xl font-bold mb-4">Our Solution</h2>
-            <h3 class="text-xl font-semibold mb-2">Electric Cargo Trikes — Built for Real India</h3>
+            <h3 class="text-xl font-semibold mb-2">Electric Cargo Trikes ; Built for Real India</h3>
             <p class="text-neutral-700">From brand-new electric trikes to retrofitted carts, our modular system restores dignity, saves lives and boosts income.</p>
             <ul class="list-disc mt-4 ml-5 space-y-2 text-neutral-700">
               <li>Zero down-payment rent-to-own options</li>
@@ -214,7 +547,7 @@
             <div class="mt-6 space-y-5 text-sm">
               <div>
                 <h4 class="font-bold text-lg">✅ Plan A: Pay-as-You-Go</h4>
-                <p>₹0 upfront. ~₹60/day for ~30 months. Includes service, parts and battery swaps.</p>
+                <p>₹0 upfront. ~₹0/day for ~24 months. Includes service, parts and battery swaps.</p>
               </div>
               <div>
                 <h4 class="font-bold text-lg">✅ Plan B: NGO/SHG-Backed Microloan</h4>
@@ -225,14 +558,109 @@
                 <p>3-month free trial for new cities or CSR pilots. Convert to Plan A/B post-trial.</p>
               </div>
             </div>
-            <p class="mt-6 text-blue-700 font-semibold">No vendor is turned away. Dignity is a right — not a reward.</p>
+            <p class="mt-6 text-blue-700 font-semibold">No vendor is turned away. Dignity is a right; not a reward.</p>
           </div>
           <figure class="fade-in">
             <img src="src/assets/metanoia-cart-diagram.png.png" alt="Exploded diagram of Tirare modular cart" loading="lazy" class="rounded-2xl shadow-soft w-full aspect-[4/3] object-cover" />
           </figure>
         </div>
       </section>
+      <!-- Technical Diagrams -->
+<section id="diagrams" class="px-6 md:px-10 py-24 bg-white">
+  <div class="max-w-7xl mx-auto">
 
+    <!-- Section header -->
+    <div class="max-w-3xl mb-14 fade-in">
+      <p class="text-sm uppercase tracking-widest text-neutral-500 mb-2">
+        Engineering & Design
+      </p>
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+        Technical Architecture
+      </h2>
+      <p class="text-lg text-neutral-700">
+        Tirare is engineered as a modular, serviceable system; not a disposable vehicle.
+        These diagrams outline structure, power, and scalability.
+      </p>
+    </div>
+
+    <!-- Main A4 Diagram -->
+    <figure class="fade-in mb-20">
+      <div class="bg-neutral-50 border border-neutral-200 rounded-2xl shadow-soft p-4 md:p-6">
+        <img
+          src="tirare-main-a4.png"
+          alt="Tirare system-level technical diagram"
+          class="w-full h-auto rounded-lg bg-white"
+        />
+      </div>
+      <figcaption class="mt-4 text-sm text-neutral-600 max-w-3xl">
+        <strong>System Overview:</strong> End-to-end architecture showing chassis, modular cargo
+        interface, battery system, drivetrain, and service access points.
+        (A4 technical reference)
+      </figcaption>
+    </figure>
+
+    <!-- Supporting Diagrams Grid -->
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <figure class="fade-in">
+        <div class="bg-white border border-neutral-200 rounded-xl shadow-soft p-4">
+          <img
+            src="diagram.png"
+            alt="Chassis and load distribution diagram"
+            class="w-full aspect-[4/3] object-contain"
+          />
+        </div>
+        <figcaption class="mt-3 text-sm text-neutral-600">
+          <strong>Chassis & Load Distribution:</strong> Low center of gravity,
+          reinforced frame, and ergonomic force transfer.
+        </figcaption>
+      </figure>
+
+      <figure class="fade-in">
+        <div class="bg-white border border-neutral-200 rounded-xl shadow-soft p-4">
+          <img
+            src="powertrain.png"
+            alt="Electric powertrain and battery system"
+            class="w-full aspect-[4/3] object-contain"
+          />
+        </div>
+        <figcaption class="mt-3 text-sm text-neutral-600">
+          <strong>Electric Powertrain:</strong> Motor, controller, swappable battery,
+          and regenerative braking logic.
+        </figcaption>
+      </figure>
+
+      <figure class="fade-in">
+        <div class="bg-white border border-neutral-200 rounded-xl shadow-soft p-4">
+          <img
+            src="modularity.png"
+            alt="Modular cargo and attachment system"
+            class="w-full aspect-[4/3] object-contain"
+          />
+        </div>
+        <figcaption class="mt-3 text-sm text-neutral-600">
+          <strong>Modular Attachments:</strong> Flatbed, box, waste, and vendor
+          configurations using a shared interface.
+        </figcaption>
+      </figure>
+
+      <figure class="fade-in">
+        <div class="bg-white border border-neutral-200 rounded-xl shadow-soft p-4">
+          <img
+            src="service.png"
+            alt="Service and maintenance access diagram"
+            class="w-full aspect-[4/3] object-contain"
+          />
+        </div>
+        <figcaption class="mt-3 text-sm text-neutral-600">
+          <strong>Service & Repair:</strong> Designed for roadside maintenance,
+          minimal tools, and fast component swaps.
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
       <section class="px-6 md:px-10 py-20 bg-neutral-100">
         <div class="max-w-6xl mx-auto text-center">
           <h2 class="text-4xl font-bold mb-6">Impact Over Time</h2>
