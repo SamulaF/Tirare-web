@@ -1336,5 +1336,21 @@
       ]
     }
     </script>
+  <script>
+  window.addEventListener("load", () => {
+    if (window.location.hash) {
+      const el = document.querySelector(window.location.hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 100); // slight delay ensures layout is stable
+      }
+    }
+  });
+</script>
+
   </body>
 </html>
