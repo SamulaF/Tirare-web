@@ -59,6 +59,39 @@
           slam: ['Anton', 'Impact', 'system-ui'],
           mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
         },
+        .badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  font-size: 12px;
+  color: #d4d4d4;
+
+  transition: all 0.2s ease;
+}
+
+.badge-chip img {
+  height: 18px;
+  filter: grayscale(100%) brightness(1.2);
+  opacity: 0.8;
+}
+
+.badge-chip:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-1px);
+}
+
+.badge-chip:hover img {
+  filter: none;
+  opacity: 1;
+}
 
         /* =========================
            COLOR SYSTEM
@@ -372,254 +405,99 @@
 <main id="main" class="relative isolate">
   <div id="wheel" aria-hidden="true"></div>
 <!-- =========================
-     GLOBAL RECOGNITION
+     RECOGNITION (ENGINEERED)
 ========================= -->
-<section class="px-6 md:px-10 py-24 bg-white border-t border-neutral-200">
+<section class="px-6 md:px-10 py-20 bg-neutral-950 text-white border-t border-neutral-800">
 
-  <div class="max-w-6xl mx-auto text-center">
+  <div class="max-w-6xl mx-auto">
 
-    <!-- Label -->
-    <p class="tech-label mb-4">
-      GLOBAL RECOGNITION · INDEPENDENT VALIDATION
-    </p>
+    <!-- Header -->
+    <div class="mb-12">
+      <p class="text-[11px] tracking-widest uppercase text-neutral-500 mb-3">
+        External Validation
+      </p>
 
-    <!-- Main Claim -->
-    <h2 class="text-3xl md:text-5xl font-semibold text-ink-light leading-tight">
-      Recognized across <span class="text-blue-600">7+ industry categories</span>
-      <br />
-      on global startup platform F6S
-    </h2>
-
-    <!-- Subtext -->
-    <p class="mt-6 text-lg text-neutral-700 max-w-3xl mx-auto">
-      Tirare has been featured across multiple high-growth sectors including mobility, 
-      sustainability, logistics, and social impact — reflecting cross-domain relevance 
-      and early-stage global visibility.
-    </p>
-
-    <!-- CATEGORY GRID (NO LINKS HERE) -->
-    <div class="mt-14 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-      <div class="tech-frame p-6">
-        <p class="text-xl font-semibold">Electric Mobility</p>
-        <p class="text-sm text-neutral-500 mt-2">Top Electric Bike Companies · 2026</p>
-      </div>
-
-      <div class="tech-frame p-6">
-        <p class="text-xl font-semibold">Sustainable Transport</p>
-        <p class="text-sm text-neutral-500 mt-2">Global Startup Listings</p>
-      </div>
-
-      <div class="tech-frame p-6">
-        <p class="text-xl font-semibold">Social Enterprise</p>
-        <p class="text-sm text-neutral-500 mt-2">India & NCT Rankings</p>
-      </div>
-
-      <div class="tech-frame p-6">
-        <p class="text-xl font-semibold">Logistics & Supply Chain</p>
-        <p class="text-sm text-neutral-500 mt-2">Regional & National Listings</p>
-      </div>
-
-      <div class="tech-frame p-6">
-        <p class="text-xl font-semibold">Transportation</p>
-        <p class="text-sm text-neutral-500 mt-2">Top Companies · NCT Delhi</p>
-      </div>
-
-      <div class="tech-frame p-6">
-        <p class="text-xl font-semibold">Manufacturing</p>
-        <p class="text-sm text-neutral-500 mt-2">Top Startups · 2026</p>
-      </div>
-
+      <h2 class="text-3xl md:text-4xl font-semibold leading-tight">
+        Independent recognition across mobility,
+        logistics, and social infrastructure
+      </h2>
     </div>
 
-    <!-- STRONG METRIC LINE -->
-    <p class="mt-12 text-base text-neutral-600">
-      Featured across <strong>electric mobility, sustainability, logistics, manufacturing, and social impact sectors</strong>
-    </p>
+    <!-- Badges row -->
+    <div class="flex flex-wrap gap-4 items-center">
 
-    <!-- SINGLE CTA (THIS IS KEY) -->
-    <div class="mt-10">
-      <a href="#f6s-proof"
-         class="px-6 py-3 bg-neutral-900 text-white rounded-xl hover:bg-black">
-        View Verified Listings
+      <!-- Badge -->
+      <a href="https://www.f6s.com/companies/electric-bike/mo" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Electric Bike · 2026</span>
       </a>
-    </div>
 
-  </div>
+      <a href="https://www.f6s.com/companies/sustainable-transport/mo" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Sustainable Transport</span>
+      </a>
 
-</section>
-  <!-- =========================
-     F6S PROOF (DETAILED)
-========================= -->
-<section id="f6s-proof" class="px-6 md:px-10 py-20 bg-neutral-50 border-t border-neutral-200">
+      <a href="https://www.f6s.com/companies/logistics-supply-chain/india/nct/no" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Logistics · NCT</span>
+      </a>
 
-  <div class="max-w-5xl mx-auto">
+      <a href="https://www.f6s.com/companies/social-enterprise/india/nct/new-delhi/co" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Social Enterprise · Delhi</span>
+      </a>
 
-    <h3 class="text-2xl font-semibold mb-8 text-center">
-      Verified F6S Listings
-    </h3>
+      <a href="https://www.f6s.com/companies/manufacturing/india/nct/new-delhi/co" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Manufacturing · 2026</span>
+      </a>
 
-    <div class="space-y-6 text-sm">
+      <a href="https://www.f6s.com/companies/poverty-reduction/mo" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Poverty Reduction</span>
+      </a>
 
-      <div>
-        <p class="font-semibold">Electric Mobility</p>
-        <a href="https://www.f6s.com/companies/electric-bike/mo" target="_blank" class="text-blue-600">
-          Top Electric Bike Companies (Feb 2026)
-        </a>
-      </div>
-
-      <div>
-        <p class="font-semibold">Social Enterprise</p>
-        <a href="https://www.f6s.com/companies/social-enterprise/india/nct/new-delhi" target="_blank" class="text-blue-600">
-          Top Social Enterprise Companies in New Delhi
-        </a>
-      </div>
-
-      <div>
-        <p class="font-semibold">Logistics & Supply Chain</p>
-        <a href="https://www.f6s.com/companies/logistics-supply-chain/india/nct/new-delhi" target="_blank" class="text-blue-600">
-          Top Logistics/Supply Chain Companies
-        </a>
-      </div>
-
-      <div>
-        <p class="font-semibold">Sustainable Transport</p>
-        <a href="https://www.f6s.com/companies/sustainable-transport/mo" target="_blank" class="text-blue-600">
-          Top Sustainable Transport Companies (Feb 2026)
-        </a>
-      </div>
-
-      <div>
-        <p class="font-semibold">Transportation</p>
-        <a href="https://www.f6s.com/companies/transportation/india/nct/new-delhi" target="_blank" class="text-blue-600">
-          Top Transportation Companies (March 2026)
-        </a>
-      </div>
-
-      <div>
-        <p class="font-semibold">Manufacturing</p>
-        <a href="https://www.f6s.com/companies/manufacturing/india/nct" target="_blank" class="text-blue-600">
-          Top Manufacturing Companies (Feb 2026)
-        </a>
-      </div>
+      <a href="https://www.f6s.com/companies/transportation/india/nct/new-delhi/co" target="_blank" class="badge-chip">
+        <img src="/F6S_Top_Company.png" />
+        <span>Transportation · Delhi</span>
+      </a>
 
     </div>
 
-  </div>
+    <!-- Divider -->
+    <div class="h-px bg-neutral-800 my-10"></div>
 
-</section>
-  <p class="text-sm text-neutral-500 mt-4">
-  Independently recognized across multiple global startup discovery platforms (F6S, 2026)
-</p>
-  <section class="relative min-h-[92vh] grid place-items-center px-6 md:px-10 overflow-hidden">
-    
-    <!-- Subtle engineering wordmark -->
-    <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-      <div class="font-slam text-[16vw] leading-none opacity-[.035] select-none tracking-wider">
-        RETROFIT
-      </div>
-    </div>
+    <!-- E-Pitch (inline, not screaming) -->
+<!-- E-Pitch (credential block) -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
 
-    <div class="max-w-5xl fade-in text-center">
+  <div class="flex items-center gap-4">
 
-      <!-- Technical context label -->
-      <p class="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-300 text-neutral-600 text-[11px] tracking-widest uppercase font-mono">
-        Axle-Based Electric Retrofit · Gen-1 System
+    <!-- Badge / Seal -->
+    <img src="/track.jpeg" class="h-10 w-auto opacity-90" />
+
+    <!-- Text -->
+    <div class="text-left">
+      <p class="text-sm text-white font-medium">
+        POC Track Winner · E-Pitch Café 2026
       </p>
-
-      <!-- Headline -->
-      <h1 class="text-4xl md:text-6xl font-semibold leading-tight font-display text-ink-light">
-        Electric assist for
-        <span class="block">
-          existing cargo trikes ;
-        </span>
-        <span class="text-ink-muted">
-          without replacing the vehicle
-          <br class="hidden sm:block" />
-          or the livelihood.
-        </span>
-      </h1>
-
-      <!-- Subtext -->
-      <p class="mt-6 text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto">
-        Tirare is a non-invasive, axle-centric electric retrofit system for cargo
-        trikes and cycle carts already in use. It reduces physical strain while
-        preserving ownership, serviceability, and local repair ecosystems.
+      <p class="text-xs text-neutral-400">
+        Hosted by IIIT Delhi
       </p>
-
-      <!-- Constraint strip -->
-      <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-left">
-
-        <div class="tech-frame p-4">
-          <p class="tech-label mb-2">Constraint</p>
-          <p class="text-sm text-ink-muted">
-            No frame cutting<br />
-            No new chassis
-          </p>
-        </div>
-
-        <div class="tech-frame p-4">
-          <p class="tech-label mb-2">Architecture</p>
-          <p class="text-sm text-ink-muted">
-            Axle-mounted drive<br />
-            Mechanical torque transfer
-          </p>
-        </div>
-
-        <div class="tech-frame p-4">
-          <p class="tech-label mb-2">Objective</p>
-          <p class="text-sm text-ink-muted">
-            Reduce fatigue<br />
-            Preserve income
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Actions -->
-      <div class="mt-12 flex items-center justify-center gap-4">
-        <a
-          href="#solution"
-          class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-soft focus:outline-none focus:ring-2 focus:ring-blue-400 hover-rise"
-        >
-          View the system
-        </a>
-        <a
-          href="#impact"
-          class="px-6 py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 font-semibold shadow-soft hover-rise"
-        >
-          See performance data
-        </a>
-      </div>
-
-      <!-- Scroll cue -->
-      <div class="mt-16 text-neutral-500 text-sm">
-        Scroll ↓
-      </div>
-
     </div>
 
-    <!-- Bottom fade -->
-    <div class="absolute left-0 right-0 -bottom-24 h-48 bg-gradient-to-t from-blue-600/10 to-transparent"></div>
-  </section>
-  <!-- Recognition -->
-<section class="px-6 md:px-10 py-10 bg-white border-y border-neutral-200">
-  <div class="max-w-5xl mx-auto text-center fade-in">
-
-    <p class="tech-label mb-3">
-      RECOGNITION
-    </p>
-
-    <p class="text-lg md:text-xl text-neutral-700 leading-relaxed">
-      After eight months of independent development, <strong>Tirare</strong> was selected as a 
-      <strong>POC Track Winner</strong> at 
-      <strong>E-Pitch Café 2026</strong>, part of the E-Summit hosted by 
-      <strong>IIIT Delhi</strong>.
-    </p>
-
   </div>
-</section>
 
+  <!-- Proof link -->
+  <a href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7440326466078412800/" 
+     target="_blank"
+     class="text-sm text-blue-400 hover:text-blue-300 transition">
+    View proof →
+  </a>
+
+</div>
+
+</section>
 <!-- =========================
      THE PROBLEM
      ========================= -->
